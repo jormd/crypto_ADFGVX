@@ -31,9 +31,12 @@ function detransposition(text, cle){
 function tabToString(tab){
     var text = "";
 
-    for(var a=0; a<tab.length; a++){
-        for (var i=0; i<tab[a].length; i++){
-            text += tab[a][i];
+    let nbCol = tab.length;
+    let nbLigne = tab[0].length;
+
+    for(var a=0; a<nbLigne; a++){
+        for(var i=0; i<nbCol; i++){
+            text += tab[i][a];
         }
     }
 

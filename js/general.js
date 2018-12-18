@@ -71,7 +71,7 @@ function checkKey(text, key) {
 }
 
 /**
- * Méthode permettant de généréle tableau de subtitution avec l'alphabet de 36 caractères
+ * Méthode permettant de généré le tableau de subtitution avec l'alphabet de 36 caractères
  *
  * @return array
  */
@@ -103,10 +103,12 @@ function addTextCryptToArray(text, key) {
     var length = text.length/key.length;
     var compt = 0;
 
-    for(var a=0; a<key.length; a++){
-        tab[a] = [];
         for(var i=0; i<length; i++){
-            tab[a].push(text[compt]);
+            for(var a=0; a<key.length; a++){
+                if(!Array.isArray(tab[a])){
+                    tab[a] = [];
+                }
+                tab[a].push(text[compt]);
             compt++;
         }
     }

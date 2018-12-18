@@ -53,7 +53,6 @@ function symbole(pos) {
  * @returns {Array}
  */
 function transposition(key, textCrypt) {
-
     var textTransposeFirstStep = addTextCryptToArray(textCrypt, key);
 
     var keySort = sortCle(key);
@@ -80,9 +79,12 @@ function transposition(key, textCrypt) {
 function afficheMessageAfterTransposition(text) {
     var message = "";
 
-    for(var a=0; a<text.length; a++){
-        for(var i=0; i<text[a].length; i++){
-            message += text[a][i];
+    let nbCol = text.length;
+    let nbLigne = text[0].length;
+
+    for(var a=0; a<nbLigne; a++){
+        for(var i=0; i<nbCol; i++){
+            message += text[i][a];
         }
     }
 
