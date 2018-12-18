@@ -6,6 +6,13 @@ function crypteMessage() {
     var text = document.getElementById("clear_text").value;
     var key = document.getElementById("key").value;
 
+    //permet de gérer les majuscule, on les met directement en minuscule
+    text = text.toLowerCase().replace(/[" "]/g, "");
+    if(key instanceof String){
+        key = key.toLowerCase();
+
+    }
+
     console.log('Clé :', key, 'Texte :', text);
 
     if (checkKey(text, key)) {
