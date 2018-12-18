@@ -1,26 +1,4 @@
 /**
- * Méthode permettant de généréle tableau de subtitution avec l'alphabet de 36 caractères
- *
- * @return array
- */
-function generateTabSubtitution() {
-    var tab = [];
-    var compt = 0;
-
-    var alpha = randomTable();
-
-    for (var i=0; i<6; i++){
-        tab[i] = [];
-        for (var a=0; a<6; a++){
-            tab[i].push(alpha[compt]);
-            compt ++;
-        }
-    }
-
-    return tab;
-}
-
-/**
  * Méthode cryptant le text
  * @param text
  */
@@ -95,46 +73,10 @@ function transposition(key, textCrypt) {
 }
 
 /**
- * Ajout du text crypter dans le tableau par rapport à la clé donnée
+ * Permet d'affiché le tableau sous forme texte
  * @param text
- * @param key
- * @returns {Array}
+ * @returns {string}
  */
-function addTextCryptToArray(text, key) {
-    var tab = [];
-    var length = text.length/key.length;
-    var compt = 0;
-
-    for(var a=0; a<key.length; a++){
-        tab[a] = [];
-        for(var i=0; i<length; i++){
-            tab[a].push(text[compt]);
-            compt++;
-        }
-    }
-
-    return tab;
-}
-
-/**
- * Ordonne les chiffres avant les lettres
- * @param cle
- * @returns {T[] | string}
- */
-function sortCle(cle) {
-    var tabNumber = cle.match(/[0-9]/g);
-    var tabString = cle.match(/[a-zA-Z]/g);
-
-    tabNumber.sort(function (a, b) {
-        return a - b;
-    });
-
-    tabString.sort();
-
-    return tabNumber.concat(tabString);
-}
-
-
 function afficheMessageAfterTransposition(text) {
     var message = "";
 
