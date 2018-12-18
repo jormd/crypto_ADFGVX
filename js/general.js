@@ -36,7 +36,7 @@ function modifyText(text) {
         textCrypt.push(symbole(pos));
    }
 
-   console.log(textCrypt);
+   return textCrypt;
 }
 
 /**
@@ -66,9 +66,3 @@ function findInArray(tab, letter) {
 function symbole(pos) {
     return alphabetCaractSpecial[pos[0]] + alphabetCaractSpecial[pos[1]]
 }
-
-
-
-
-
-
