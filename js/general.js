@@ -48,7 +48,7 @@ function modifyText(text) {
 function findInArray(tab, letter) {
 
     var search = function (element) {
-        return element == letter;
+        return element === letter;
     };
 
     for(var i=0; i<tab.length; i++){
@@ -66,3 +66,12 @@ function findInArray(tab, letter) {
 function symbole(pos) {
     return alphabetCaractSpecial[pos[0]] + alphabetCaractSpecial[pos[1]]
 }
+
+
+
+function checkKey(text, key) {
+    return ((parseInt(text.length)*2)%(parseInt(key.length)) === 0 && key > 1);
+}
+
+
+
