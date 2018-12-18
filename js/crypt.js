@@ -7,10 +7,12 @@ function generateTabSubtitution() {
     var tab = [];
     var compt = 0;
 
+    var alpha = randomTable();
+
     for (var i=0; i<6; i++){
         tab[i] = [];
         for (var a=0; a<6; a++){
-            tab[i].push(alphabetNum[compt]);
+            tab[i].push(alpha[compt]);
             compt ++;
         }
     }
