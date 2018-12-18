@@ -1,17 +1,37 @@
-<htmL>
+<htmL lang="fr">
     <head>
         <title>Chiffre ADFGVX</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="style.css">
     </head>
     <body>
+        <h1>Chiffre ADFGVX</h1>
+        <form>
+            <div class="text-clair-container">
+                <div>
+                    <label for="clear_text">Texte clair :</label><br>
+                    <input type="text" name="clear_text" id="clear_text" placeholder="Entrer votre texte clair à crypter ici" />
+                </div>
 
+                <div>
+                    <label for="key">Clé de cryptage :</label><br>
+                    <input type="text" name="key" id="key" placeholder="Entrer votre clé de cryptage ici" pattern="checkKey" title="Le format de clé est incorrect" />
+                    <div id="manage_key">
+                    </div>
+                </div>
+            </div>
+
+            <button class="crypt-button" type="button" onclick="crypteMessage()">CRYPTER LE MESSAGE</button>
+
+            <textarea id="crypted_text"></textarea>
+        </form>
         <script type="application/javascript" src="js/general.js"></script>
         <script type="application/javascript" src="js/crypt.js"></script>
     <script>
         //var text = modifyText('bonjour');
         //var transposition = transposition('asdkqh1', text);
 
-        console.log(crypteMessage('bonjour', 'asdkqh1'));
-
+        //TODO: GERER MAJUSCULE, SUPPRIMER ESPACE
     </script>
     </body>
 </htmL>

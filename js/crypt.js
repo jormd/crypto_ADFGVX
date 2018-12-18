@@ -77,6 +77,7 @@ function transposition(key, textCrypt) {
     var textTransposeFirstStep = addTextCryptToArray(textCrypt, key);
 
     var keySort = sortCle(key);
+    console.log(keySort);
 
     var arrayKey = key.split("");
 
@@ -88,7 +89,7 @@ function transposition(key, textCrypt) {
         });
         tab.push(textTransposeFirstStep[pos]);
     }
-
+console.log(tab);
     return tab;
 }
 
@@ -123,13 +124,24 @@ function sortCle(cle) {
     var tabNumber = cle.match(/[0-9]/g);
     var tabString = cle.match(/[a-zA-Z]/g);
 
-    tabNumber.sort(function (a, b) {
-        return a - b;
-    });
+    if (tabString) {
+        tabString.sort();
+    }
 
-    tabString.sort();
+    if(tabNumber) {
+        tabNumber.sort(function (a, b) {
+            return a - b;
 
-    return tabNumber.concat(tabString);
+        });
+
+        if(tabString) {
+            return tabNumber.concat(tabString);
+        }
+
+        return tabNumber;
+    }
+
+    return tabString;
 }
 
 

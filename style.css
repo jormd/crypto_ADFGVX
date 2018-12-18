@@ -1,0 +1,34 @@
+.good-key {
+    color: green !important;
+}
+
+.bad-key {
+    color: red !important;
+}
+
+h1 {
+    text-align: center;
+}
+
+.text-clair-container {
+    display: flex;
+    justify-content: space-around;
+    padding-bottom: 3rem;
+}
+
+input {
+    width: 300px;
+}
+
+form {
+    background-color: whitesmoke;
+}
+
+.crypt-button, textarea {
+    display: block;
+    margin: auto;
+}
+
+textarea {
+    margin-top: 3rem;
+}
