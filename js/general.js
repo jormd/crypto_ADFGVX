@@ -36,6 +36,8 @@ function modifyText(text) {
         textCrypt.push(symbole(pos));
    }
 
+   textCrypt = textCrypt.join('');
+
    return textCrypt;
 }
 
@@ -67,11 +69,78 @@ function symbole(pos) {
     return alphabetCaractSpecial[pos[0]] + alphabetCaractSpecial[pos[1]]
 }
 
-
-
+/**
+ * Vérification de la clé passer par l'utilisateur
+ * @param text
+ * @param key
+ * @returns {boolean}
+ */
 function checkKey(text, key) {
     return ((parseInt(text.length)*2)%(parseInt(key.length)) === 0 && key > 1);
 }
 
+/**
+ *
+ * @param key
+ * @param textCrypt
+ * @returns {Array}
+ */
+function transposition(key, textCrypt) {
 
+    var textTransposeFirstStep = addTextCryptToArray(textCrypt, key);
 
+    var keySort = sortCle(key);
+
+    var arrayKey = key.split("");
+
+    var tab = [];
+
+    for (var i =0; i<keySort.length; i++){
+        var pos = arrayKey.findIndex(function (element) {
+            return element === keySort[i];
+        });
+        tab.push(textTransposeFirstStep[pos]);
+    }
+
+    return tab;
+}
+
+/**
+ * Ajout du text crypter dans le tableau par rapport à la clé donnée
+ * @param text
+ * @param key
+ * @returns {Array}
+ */
+function addTextCryptToArray(text, key) {
+    var tab = [];
+    var length = text.length/key.length;
+    var compt = 0;
+
+    for(var a=0; a<key.length; a++){
+        tab[a] = [];
+        for(var i=0; i<length; i++){
+            tab[a].push(text[compt]);
+            compt++;
+        }
+    }
+
+    return tab;
+}
+
+/**
+ * Ordonne les chiffres avant les lettres
+ * @param cle
+ * @returns {T[] | string}
+ */
+function sortCle(cle) {
+    var tabNumber = cle.match(/[0-9]/g);
+    var tabString = cle.match(/[a-zA-Z]/g);
+
+    tabNumber.sort(function (a, b) {
+        return a - b;
+    });
+
+    tabString.sort();
+
+    return tabNumber.concat(tabString);
+}
