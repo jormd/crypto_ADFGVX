@@ -13,11 +13,18 @@ function detransposition(text, cle){
 
     var tab = [];
 
+    let letter = [];
+
     for (var i =0; i<arrayKey.length; i++){
-        var pos = keySort.findIndex(function (element) {
-            return element === arrayKey[i];
-        });
-        tab.push(textInTab[pos]);
+        if(!Number.isInteger(letter[arrayKey[i]])){
+            letter[arrayKey[i]] = 0;
+        }
+        else{
+            letter[arrayKey[i]]++;
+        }
+
+        var pos = getAllIndexes(keySort, arrayKey[i]);
+        tab.push(textInTab[pos[letter[arrayKey[i]]]]);
     }
 
     return tab;
