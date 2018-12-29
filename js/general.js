@@ -47,6 +47,14 @@ function decrypteMessage(text, key) {
     return desub;
 }
 
+/**
+ * Cryptanalyse sans clé
+ * @param text
+ */
+function cryptanalyse(text) {
+
+}
+
 
 function randomTable() {
     var tab = [];
