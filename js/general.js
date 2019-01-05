@@ -88,6 +88,43 @@ function generateTabSubtitution() {
 
     var alpha = randomTable();
 
+    document.getElementsByClassName("case1")[0].innerHTML = alpha[0];
+    document.getElementsByClassName("case2")[0].innerHTML = alpha[1];
+    document.getElementsByClassName("case3")[0].innerHTML = alpha[2];
+    document.getElementsByClassName("case4")[0].innerHTML = alpha[3];
+    document.getElementsByClassName("case5")[0].innerHTML = alpha[4];
+    document.getElementsByClassName("case6")[0].innerHTML = alpha[5];
+    document.getElementsByClassName("case7")[0].innerHTML = alpha[6];
+    document.getElementsByClassName("case8")[0].innerHTML = alpha[7];
+    document.getElementsByClassName("case9")[0].innerHTML = alpha[8];
+    document.getElementsByClassName("case10")[0].innerHTML = alpha[9];
+    document.getElementsByClassName("case11")[0].innerHTML = alpha[10];
+    document.getElementsByClassName("case12")[0].innerHTML = alpha[11];
+    document.getElementsByClassName("case13")[0].innerHTML = alpha[12];
+    document.getElementsByClassName("case14")[0].innerHTML = alpha[13];
+    document.getElementsByClassName("case15")[0].innerHTML = alpha[14];
+    document.getElementsByClassName("case16")[0].innerHTML = alpha[15];
+    document.getElementsByClassName("case17")[0].innerHTML = alpha[16];
+    document.getElementsByClassName("case18")[0].innerHTML = alpha[17];
+    document.getElementsByClassName("case19")[0].innerHTML = alpha[18];
+    document.getElementsByClassName("case20")[0].innerHTML = alpha[19];
+    document.getElementsByClassName("case21")[0].innerHTML = alpha[20];
+    document.getElementsByClassName("case22")[0].innerHTML = alpha[21];
+    document.getElementsByClassName("case23")[0].innerHTML = alpha[22];
+    document.getElementsByClassName("case24")[0].innerHTML = alpha[23];
+    document.getElementsByClassName("case25")[0].innerHTML = alpha[24];
+    document.getElementsByClassName("case26")[0].innerHTML = alpha[25];
+    document.getElementsByClassName("case27")[0].innerHTML = alpha[26];
+    document.getElementsByClassName("case28")[0].innerHTML = alpha[27];
+    document.getElementsByClassName("case29")[0].innerHTML = alpha[28];
+    document.getElementsByClassName("case30")[0].innerHTML = alpha[29];
+    document.getElementsByClassName("case31")[0].innerHTML = alpha[30];
+    document.getElementsByClassName("case32")[0].innerHTML = alpha[31];
+    document.getElementsByClassName("case33")[0].innerHTML = alpha[32];
+    document.getElementsByClassName("case34")[0].innerHTML = alpha[33];
+    document.getElementsByClassName("case35")[0].innerHTML = alpha[34];
+    document.getElementsByClassName("case36")[0].innerHTML = alpha[35];
+
     for (var i=0; i<6; i++){
         tab[i] = [];
         for (var a=0; a<6; a++){
