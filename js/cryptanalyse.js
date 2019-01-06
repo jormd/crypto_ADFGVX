@@ -88,19 +88,29 @@ function positionnementLettre(doublon) {
             }
         }
     }
-    return tab
+    return tab;
 }
 
 function createMatriceAletoire(text) {
-    let tab = positionnementLettre(searchDoublon(text));
-    // var compt = 0;
-    //
-    // for (var i=0; i<6; i++){
-    //     tab[i] = [];
-    //     for (var a=0; a<6; a++){
-    //         tab[i].push();
-    //         compt ++;
-    //     }
-    // }
+    let doublon = searchDoublon(text);
+    let tab = positionnementLettre(doublon);
+    let compt = 0;
+
+    for (let i=0; i<6; i++){
+        tab[i] = [];
+        for (let a=0; a<6; a++){
+            if(tab[i][a].length === 0 || tab[i][a] === ""){
+                let can = true;
+                //vérifié si la lettre n'est pas dans le tableau (par rapport au lettre de fréquence mise
+                for (let b = 0; b < doublon.length; b++){
+
+                }
+                if(can){
+                    tab[i][a] = ;
+                }
+            }
+            compt ++;
+        }
+    }
 
 }
