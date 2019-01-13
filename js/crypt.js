@@ -61,11 +61,21 @@ function transposition(key, textCrypt) {
 
     var tab = [];
 
+    let letter = [];
+
     for (var i =0; i<keySort.length; i++){
-        var pos = arrayKey.findIndex(function (element) {
-            return element === keySort[i];
-        });
-        tab.push(textTransposeFirstStep[pos]);
+        if(!Number.isInteger(letter[keySort[i]])){
+            letter[keySort[i]] = 0;
+        }
+        else{
+            letter[keySort[i]]++;
+        }
+
+        var pos = getAllIndexes(arrayKey, keySort[i]);
+
+
+        tab.push(textTransposeFirstStep[pos[letter[keySort[i]]]]);
+
     }
 
     return tab;

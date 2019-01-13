@@ -15,7 +15,7 @@
 
                 <div>
                     <label for="key">Clé de cryptage :</label><br>
-                    <input type="text" name="key" id="key" placeholder="Entrer votre clé de cryptage ici" pattern="checkKey" title="Le format de clé est incorrect" />
+                    <input type="text" name="key" id="key" placeholder="Entrer votre clé de cryptage ici" />
                     <div id="manage_key">
                     </div>
                 </div>
@@ -25,6 +25,27 @@
 
             <textarea id="crypted_text"></textarea>
         </form>
+
+        <form>
+            <div class="text-crypte-container">
+                <div>
+                    <label for="crypte_text">Texte crypté :</label><br>
+                    <input type="text" name="crypte_text" id="crypte_text" placeholder="Entrer votre texte crypté à décrypter ici" />
+                </div>
+
+                <div>
+                    <label for="key_decrypt">Clé de décryptage :</label><br>
+                    <input type="text" name="key_decrypt" id="key_decrypt" placeholder="Entrer votre clé de décryptage ici" />
+                    <div id="manage_key2">
+                    </div>
+                </div>
+            </div>
+
+            <button class="decrypt-button" type="button" onclick="decrypteMessage()">DECRYPTER LE MESSAGE</button>
+
+            <textarea id="decrypted_text"></textarea>
+        </form>
+
         <script type="application/javascript" src="js/general.js"></script>
         <script type="application/javascript" src="js/crypt.js"></script>
         <script type="application/javascript" src="js/decrypt.js"></script>

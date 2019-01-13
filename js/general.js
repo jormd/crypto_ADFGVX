@@ -39,10 +39,17 @@ function crypteMessage() {
  * @param text
  * @param key
  */
-function decrypteMessage(text, key) {
+function decrypteMessage() {
+     var text = document.getElementById("crypte_text").value;
+     var key = document.getElementById("key_decrypt").value;
+
     var detrans = detransposition(text, key);
 
+
+
     var desub = desubstitution(detrans);
+
+    document.getElementById("decrypted_text").innerHTML = desub;
 
     return desub;
 }
@@ -152,3 +159,10 @@ function sortCle(cle) {
     return tabString;
 }
 
+function getAllIndexes(arr, val) {
+    var indexes = [], i = -1;
+    while ((i = arr.indexOf(val, i+1)) != -1){
+        indexes.push(i);
+    }
+    return indexes;
+}
