@@ -22,10 +22,12 @@
             </div>
 
             <button class="crypt-button" type="button" onclick="crypteMessage()">CRYPTER LE MESSAGE</button>
-                <p style="text-align: center; margin-top: 50px;">Message crypté après substitution et transposition :</p>
+
+            <p style="text-align: center;">Message crypté après la substitution simple:</p><textarea id="substitution"></textarea>
+
+            <p style="text-align: center; margin-top: 50px;">Message crypté après substitution et transposition par ordre alphanumérique:</p>
             <textarea id="crypted_text"></textarea>
         </form>
-
 
         <table>
             <thead>SUBSTITUTION</thead>
@@ -58,22 +60,22 @@
                 <td class="vertical horizontal case12"></td>
             </tr>
             <tr>
-            <td class="horizontal">+</td>
-            <td class="vertical horizontal case13"></td>
-            <td class="vertical horizontal case14"></td>
-            <td class="vertical horizontal case15"></td>
-            <td class="vertical horizontal case16"></td>
-            <td class="vertical horizontal case17"></td>
-            <td class="vertical horizontal case18"></td>
+                <td class="horizontal">+</td>
+                <td class="vertical horizontal case13"></td>
+                <td class="vertical horizontal case14"></td>
+                <td class="vertical horizontal case15"></td>
+                <td class="vertical horizontal case16"></td>
+                <td class="vertical horizontal case17"></td>
+                <td class="vertical horizontal case18"></td>
             </tr>
             <tr>
-            <td class="horizontal">*</td>
-            <td class="vertical horizontal case19"></td>
-            <td class="vertical horizontal case20"></td>
-            <td class="vertical horizontal case21"></td>
-            <td class="vertical horizontal case22"></td>
-            <td class="vertical horizontal case23"></td>
-            <td class="vertical horizontal case24"></td>
+                <td class="horizontal">*</td>
+                <td class="vertical horizontal case19"></td>
+                <td class="vertical horizontal case20"></td>
+                <td class="vertical horizontal case21"></td>
+                <td class="vertical horizontal case22"></td>
+                <td class="vertical horizontal case23"></td>
+                <td class="vertical horizontal case24"></td>
             </tr>
             <tr>
                 <td class="horizontal">%</td>
@@ -94,6 +96,27 @@
                 <td class="vertical horizontal case36"></td>
             </tr>
 
+        </table>
+        <table>
+            <thead>TRANSPOSITION</thead>
+            <tr class="horizontal" id="transposition_ligne_1">
+
+            </tr>
+            <tr class="horizontal" id="transposition_ligne_2">
+
+            </tr>
+            <tr class="horizontal" id="transposition_ligne_3">
+
+            </tr>
+            <tr class="horizontal" id="transposition_ligne_4">
+
+            </tr>
+            <tr class="horizontal" id="transposition_ligne_5">
+
+            </tr>
+            <tr class="horizontal" id="transposition_ligne_6">
+
+            </tr>
         </table>
 
         <form>
