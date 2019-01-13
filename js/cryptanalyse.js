@@ -73,7 +73,7 @@ function rangementParnbApparition(doublon, nb = 1) {
  * Méthode permettant de positionner les lettres par rapport à la fréquence d'apparition
  * @param doublon
  */
-function positionnementLettre(doublon, langage) {
+function positionnementLettre(doublon, langage, pos) {
     var tab = [];
     for (var i = 0; i < doublon.length; i++){
         for (var b=0; b<6; b++){
@@ -85,10 +85,11 @@ function positionnementLettre(doublon, langage) {
             for (var a=0; a<6; a++){
                 if(doublon[i][0] === alphabetCaractSpecial[b]+alphabetCaractSpecial[a]){
                     if(langage === "fr"){
-                        tab[b][a] = frLetterApparition[i];
+
+                        tab[b][a] = selection(pos, frLetterApparition,i);
                     }
                     else if(langage === "en"){
-                        tab[b][a] = enLetterApparition[i];
+                        tab[b][a] = selection(pos, enLetterApparition,i);
                     }
                 }
                 // pour ne pas multiplie le nombre de champs en ligne
@@ -101,6 +102,157 @@ function positionnementLettre(doublon, langage) {
     return tab;
 }
 
+function selection(pos, alphabat, index) {
+    switch (pos){
+        case 0:
+            return alphabat[index];
+            break;
+        case 1:
+            if(index === 0){
+                return alphabat[index]
+            }
+            if(index+1 > 6){
+                return alphabat[(index+1)%6]
+            }
+            return alphabat[index+1];
+            break;
+        case 2:
+            if(index === 0){
+                return alphabat[index]
+            }
+            if(index+2 > 6){
+                return alphabat[(index+2)%6];
+
+            }
+            return alphabat[index+2];
+            break;
+        case 3:
+            if(index === 0){
+                return alphabat[index]
+            }
+            if(index+3 > 6){
+                return alphabat[(index+2)%6];
+
+            }
+            return alphabat[index+3];
+            break;
+        case 4:
+            if(index === 0){
+                return alphabat[index]
+            }
+            if(index+4 > 6){
+                return alphabat[(index+4)%6];
+
+            }
+            return alphabat[index+4];
+            break;
+        case 5:
+            if(index === 0){
+                return alphabat[index+1]
+            }
+            if(index+1 > 6){
+                return alphabat[(index+1)%6];
+
+            }
+            return alphabat[index+1];
+            break;
+        case 6:
+            if(index === 0){
+                return alphabat[index+1]
+            }
+            if(index+2 > 6){
+                return alphabat[(index+2)%6];
+
+            }
+            return alphabat[index+2];
+            break;
+        case 7:
+            if(index === 0){
+                return alphabat[index+1]
+            }
+            if(index+3 > 6){
+                return alphabat[(index+3)%6];
+
+            }
+            return alphabat[index+3];
+            break;
+        case 8:
+            if(index === 0){
+                return alphabat[index+1]
+            }
+            if(index+4 > 6){
+                return alphabat[(index+4)%6];
+
+            }
+            return alphabat[index+4];
+            break;
+        case 9:
+            if(index === 0){
+                return alphabat[index+2]
+            }
+            if(index+2 > 6){
+                return alphabat[(index+2)%6];
+
+            }
+            return alphabat[index+2];
+            break;
+        case 10:
+            if(index === 0){
+                return alphabat[index+2]
+            }
+            if(index+3 > 6){
+                return alphabat[(index+3)%6];
+
+            }
+            return alphabat[index+3];
+            break;
+        case 11:
+            if(index === 0){
+                return alphabat[index+2]
+            }
+            if(index+4 > 6){
+                return alphabat[(index+4)%6];
+
+            }
+            return alphabat[index+4];
+            break;
+        case 12:
+            if(index === 0){
+                return alphabat[index+3]
+            }
+            if(index+3 > 6){
+                return alphabat[(index+3)%6];
+
+            }
+            return alphabat[index+3];
+            break;
+        case 13:
+            if(index === 0){
+                return alphabat[index+3]
+            }
+            if(index+4 > 6){
+                return alphabat[(index+4)%6];
+
+            }
+            return alphabat[index+4];
+            break;
+        case 14:
+            if(index === 0){
+                return alphabat[index+4]
+            }
+            if(index+4 > 6){
+                return alphabat[(index+4)%6];
+
+            }
+            return alphabat[index+4];
+            break;
+        default:
+                return null;
+            break;
+    }
+    return false;
+}
+
 /**
  * Permet de cryptanalysé le texte donnée et retourné un ensemble de possibilité
  * @param text
@@ -109,45 +261,53 @@ function positionnementLettre(doublon, langage) {
 function hackChaine(text, langage) {
     let doublon = searchDoublon(text);
 
-    let alphabet = alphabetNum;
 
-    for(var i = 0; i< doublon.length; i++){
-        for (var b=0; b<6; b++){
-            for (var a=0; a<6; a++){
-                if(doublon[i][0] === alphabetCaractSpecial[b]+alphabetCaractSpecial[a]){
-                    if(langage === "fr"){
-                        alphabet = remove(alphabet, frLetterApparition[i]);
-                    }
-                    else if(langage === "en"){
-                        alphabet = remove(alphabet, enLetterApparition[i]);
+    let possibility = [];
+
+
+    for(var t=0; t<15; t++){
+
+        let alphabet = alphabetNum;
+
+
+        for(var i = 0; i< doublon.length; i++){
+            for (var b=0; b<6; b++){
+                for (var a=0; a<6; a++){
+                    if(doublon[i][0] === alphabetCaractSpecial[b]+alphabetCaractSpecial[a]){
+                        if(langage === "fr"){
+                            alphabet = remove(alphabet, selection(t, frLetterApparition,i));
+                        }
+                        else if(langage === "en"){
+                            alphabet = remove(alphabet, selection(t, enLetterApparition,i));
+                        }
                     }
                 }
             }
         }
 
-    }
 
-    let possibility = [];
+        for(var x=0; x< 50000; x++){
+            let tab = positionnementLettre(doublon, langage, t);
+            let matrix = createMatrice(tab, alphabet);
 
-    for(var x=0; x< 100000; x++){
-        let tab = positionnementLettre(doublon, langage);
-        let matrix = createMatrice(tab, alphabet);
+            var result = "";
+            for (var a=0; a<text.length; a+=2){
+                var ligne = alphabetCaractSpecial.findIndex(function (element) {
+                    return element === text[a];
+                });
 
-        var result = "";
-        for (var a=0; a<text.length; a+=2){
-            var ligne = alphabetCaractSpecial.findIndex(function (element) {
-                return element === text[a];
-            });
-
-            var col = alphabetCaractSpecial.findIndex(function (element) {
-                return element === text[a+1];
-            });
-            result += matrix[ligne][col];
+                var col = alphabetCaractSpecial.findIndex(function (element) {
+                    return element === text[a+1];
+                });
+                result += matrix[ligne][col];
+            }
+            possibility.push(result);
         }
-        possibility.push(result);
+
+        possibility = cleanResult(possibility);
     }
 
-    possibility = cleanResult(possibility);
+
 
     return possibility;
 }
