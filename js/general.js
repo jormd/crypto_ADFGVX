@@ -60,7 +60,8 @@ function decrypteMessage() {
  */
 function cryptanalyse() {
     var text = document.getElementById("cryptanalyse_text").value;
-    let result = hackChaine(text);
+    var langage = document.getElementById("cryptanalyse_language").value;
+    let result = hackChaine(text, langage);
     var textarea = document.getElementById("decryptanalyse_text");
     textarea.innerHTML = result.join("\n");
 }

@@ -1,4 +1,5 @@
 const frLetterApparition = ['e', 'a', 'i', 's', 'n', 'r'];
+const enLetterApparition = ['e', 't', 'a', 'o', 'n', 'i'];
 
 /**
  * Permet de transformer le text en tableau contenant que 2 caractères par cellule
@@ -72,7 +73,7 @@ function rangementParnbApparition(doublon, nb = 1) {
  * Méthode permettant de positionner les lettres par rapport à la fréquence d'apparition
  * @param doublon
  */
-function positionnementLettre(doublon) {
+function positionnementLettre(doublon, langage) {
     var tab = [];
     for (var i = 0; i < doublon.length; i++){
         for (var b=0; b<6; b++){
@@ -83,7 +84,12 @@ function positionnementLettre(doublon) {
 
             for (var a=0; a<6; a++){
                 if(doublon[i][0] === alphabetCaractSpecial[b]+alphabetCaractSpecial[a]){
-                    tab[b][a] = frLetterApparition[i];
+                    if(langage === "fr"){
+                        tab[b][a] = frLetterApparition[i];
+                    }
+                    else if(langage === "en"){
+                        tab[b][a] = enLetterApparition[i];
+                    }
                 }
                 // pour ne pas multiplie le nombre de champs en ligne
                 else if(tab[b].length < 6){
@@ -100,7 +106,7 @@ function positionnementLettre(doublon) {
  * @param text
  * @returns {*}
  */
-function hackChaine(text) {
+function hackChaine(text, langage) {
     let doublon = searchDoublon(text);
 
     let alphabet = alphabetNum;
@@ -109,8 +115,12 @@ function hackChaine(text) {
         for (var b=0; b<6; b++){
             for (var a=0; a<6; a++){
                 if(doublon[i][0] === alphabetCaractSpecial[b]+alphabetCaractSpecial[a]){
-                    console.log(frLetterApparition[i]);
-                    alphabet = remove(alphabet, frLetterApparition[i]);
+                    if(langage === "fr"){
+                        alphabet = remove(alphabet, frLetterApparition[i]);
+                    }
+                    else if(langage === "en"){
+                        alphabet = remove(alphabet, enLetterApparition[i]);
+                    }
                 }
             }
         }
@@ -120,7 +130,7 @@ function hackChaine(text) {
     let possibility = [];
 
     for(var x=0; x< 100000; x++){
-        let tab = positionnementLettre(doublon);
+        let tab = positionnementLettre(doublon, langage);
         let matrix = createMatrice(tab, alphabet);
 
         var result = "";
