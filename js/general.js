@@ -58,8 +58,11 @@ function decrypteMessage() {
  * Cryptanalyse sans clé
  * @param text
  */
-function cryptanalyse(text) {
-
+function cryptanalyse() {
+    var text = document.getElementById("cryptanalyse_text").value;
+    let result = hackChaine(text);
+    var textarea = document.getElementById("decryptanalyse_text");
+    textarea.innerHTML = result.join("\n");
 }
 
 

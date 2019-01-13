@@ -100,7 +100,7 @@ function positionnementLettre(doublon) {
  * @param text
  * @returns {*}
  */
-function cryptanalyse(text) {
+function hackChaine(text) {
     let doublon = searchDoublon(text);
 
     let alphabet = alphabetNum;
