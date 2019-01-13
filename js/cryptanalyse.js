@@ -23,10 +23,14 @@ function searchDoublon(text){
         if(doublon[tab[i]] == null){
             for(let a = i+1; a<tab.length; a++){
                 if(tab[i] === tab[a]){
-                    if(doublon[tab[i]] != null){
-                        doublon[compt][1] = doublon[compt][1]+1;
+                    let existing = false;
+                    for(var y = 0; y<doublon.length; y++){
+                        if(doublon[y][0] === tab[i]){
+                            doublon[y][1] = doublon[y][1]+1;
+                            existing = true;
+                        }
                     }
-                    else{
+                    if(!existing){
                         doublon[compt] = [];
                         doublon[compt][0] = tab[i];
                         doublon[compt][1] = 2;
@@ -67,16 +71,16 @@ function rangementParnbApparition(doublon, nb = 1) {
 /**
  * Méthode permettant de positionner les lettres par rapport à la fréquence d'apparition
  * @param doublon
- * @returns {Array}
  */
 function positionnementLettre(doublon) {
-    let tab = [];
+    var tab = [];
     for (var i = 0; i < doublon.length; i++){
         for (var b=0; b<6; b++){
             // pour ne pas multiplie le nombre de champs en ligne
-            if(tab[b] == null) {
+            if(tab[b] === undefined){
                 tab[b] = [];
             }
+
             for (var a=0; a<6; a++){
                 if(doublon[i][0] === alphabetCaractSpecial[b]+alphabetCaractSpecial[a]){
                     tab[b][a] = frLetterApparition[i];
@@ -91,26 +95,111 @@ function positionnementLettre(doublon) {
     return tab;
 }
 
-function createMatriceAletoire(text) {
+/**
+ * Permet de cryptanalysé le texte donnée et retourné un ensemble de possibilité
+ * @param text
+ * @returns {*}
+ */
+function cryptanalyse(text) {
     let doublon = searchDoublon(text);
-    let tab = positionnementLettre(doublon);
-    let compt = 0;
 
-    for (let i=0; i<6; i++){
-        tab[i] = [];
-        for (let a=0; a<6; a++){
-            if(tab[i][a].length === 0 || tab[i][a] === ""){
-                let can = true;
-                //vérifié si la lettre n'est pas dans le tableau (par rapport au lettre de fréquence mise
-                for (let b = 0; b < doublon.length; b++){
+    let alphabet = alphabetNum;
 
-                }
-                if(can){
-                    tab[i][a] = ;
+    for(var i = 0; i< doublon.length; i++){
+        for (var b=0; b<6; b++){
+            for (var a=0; a<6; a++){
+                if(doublon[i][0] === alphabetCaractSpecial[b]+alphabetCaractSpecial[a]){
+                    console.log(frLetterApparition[i]);
+                    alphabet = remove(alphabet, frLetterApparition[i]);
                 }
             }
-            compt ++;
+        }
+
+    }
+
+    let possibility = [];
+
+    for(var x=0; x< 100000; x++){
+        let tab = positionnementLettre(doublon);
+        let matrix = createMatrice(tab, alphabet);
+
+        var result = "";
+        for (var a=0; a<text.length; a+=2){
+            var ligne = alphabetCaractSpecial.findIndex(function (element) {
+                return element === text[a];
+            });
+
+            var col = alphabetCaractSpecial.findIndex(function (element) {
+                return element === text[a+1];
+            });
+            result += matrix[ligne][col];
+        }
+        possibility.push(result);
+    }
+
+    possibility = cleanResult(possibility);
+
+    return possibility;
+}
+
+/**
+ * Permet de nettoyé le tableau de possibilité, on retire les nombre qui est un salt
+ * @param tab
+ * @returns {*}
+ */
+function cleanResult(tab) {
+    let enter = false;
+    for(var t=0; t<tab.length; t++){
+        if(hasNumber(tab[t])){
+            tab = remove(tab, tab[t]);
+            enter = true;
+        }
+    }
+    if(enter){
+        return cleanResult(tab);
+    }
+
+    return tab;
+}
+
+/**
+ * Permet de supprimer un élément du tableau
+ * @param array
+ * @param element
+ * @returns {Int32Array | * | Uint32Array | T[] | Int8Array | Float64Array | Uint8Array | Int16Array | Float32Array | Uint8ClampedArray | Uint16Array}
+ */
+function remove(array, element) {
+    return array.filter(el => el !== element);
+}
+
+/**
+ * check si la chaine contien un chiffre
+ * @param text
+ * @returns {boolean}
+ */
+function hasNumber(text) {
+    return /\d/.test(text);
+}
+
+/**
+ * Permet  de crée une matrice en aléatoire
+ * @param tab
+ * @param alphabet
+ * @returns {*}
+ */
+function createMatrice(tab, alphabet) {
+
+    for (let i=0; i<6; i++){
+        for (let a=0; a<6; a++){
+            if(tab[i][a] === ""){
+                let num = Math.random() * alphabet.length;
+                let letter = alphabet[Math.floor(num)];
+                tab[i][a] = letter;
+
+                alphabet = remove(alphabet, letter);
+            }
         }
     }
 
+    return tab;
 }
