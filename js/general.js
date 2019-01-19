@@ -30,7 +30,7 @@ function crypteMessage() {
 
         document.getElementById("crypted_text").innerHTML = afficheMessageAfterTransposition(transpo);
     } else {
-        document.getElementById('manage_key').innerHTML = "Clé incorrecte";
+        document.getElementById('manage_key').innerHTML = "Clé incorrecte(Entrez une clé divisible par votre texte à crypter différente de vide ou 1)";
         document.getElementById('manage_key').classList.remove("good-key");
         document.getElementById('manage_key').classList.add("bad-key");
 
@@ -46,6 +46,15 @@ function crypteMessage() {
 function decrypteMessage() {
      var text = document.getElementById("crypte_text").value;
      var key = document.getElementById("key_decrypt").value;
+
+    document.getElementById("manage_key2").innerHTML = '';
+
+    if(key === '') {
+        document.getElementById("manage_key2").innerHTML = 'Entrer une clé valide';
+        document.getElementById('manage_key2').classList.add("bad-key");
+
+        return;
+     }
 
     var detrans = detransposition(text, key);
 
@@ -212,6 +221,9 @@ function transpoSimpleHTML(key, substitution) {
     document.getElementById('transposition_ligne_4').innerHTML = "";
     document.getElementById('transposition_ligne_5').innerHTML = "";
     document.getElementById('transposition_ligne_6').innerHTML = "";
+    document.getElementById('transposition_ligne_7').innerHTML = "";
+    document.getElementById('transposition_ligne_8').innerHTML = "";
+    document.getElementById('transposition_ligne_9').innerHTML = "";
 
     if (key.length === substitution.length) {
         document.getElementById('transposition_ligne_2').innerHTML = "<td class='horizontal'> Message codé</td>";
@@ -308,5 +320,132 @@ function transpoSimpleHTML(key, substitution) {
         }
     }
 
+    if (key.length === (substitution.length)/6) {
+        document.getElementById('transposition_ligne_2').innerHTML = "<td class='horizontal'> Message codé</td>";
 
+        for (var j=0; j < substitution.length/6; j++) {
+            document.getElementById('transposition_ligne_2').insertAdjacentHTML('beforeend', "<td class='vertical horizontal'>" + substitution[j] + "</td>");
+        }
+        document.getElementById('transposition_ligne_3').innerHTML = "<td class='horizontal'> Message codé</td>";
+
+        for (var j2=(substitution.length/6); (j2 >= (substitution.length/6) && j2 < (substitution.length/6 + substitution.length/6)); j2++) {
+            document.getElementById('transposition_ligne_3').insertAdjacentHTML('beforeend', "<td class='vertical horizontal'>" + substitution[j2] + "</td>");
+        }
+
+        document.getElementById('transposition_ligne_4').innerHTML = "<td class='horizontal'> Message codé</td>";
+
+        for (var j3=(substitution.length/6 + substitution.length/6); (j3 >= (substitution.length/6 + substitution.length/6) && j3 < (substitution.length/6 + substitution.length/6 + substitution.length/6)); j3++) {
+            document.getElementById('transposition_ligne_4').insertAdjacentHTML('beforeend', "<td class='vertical horizontal'>" + substitution[j3] + "</td>");
+        }
+
+        document.getElementById('transposition_ligne_5').innerHTML = "<td class='horizontal'> Message codé</td>";
+
+        for (var j4=(substitution.length/6 + substitution.length/6 + substitution.length/6); (j4 >= ((substitution.length/6 + substitution.length/6 + substitution.length/6)) && j4 < (substitution.length/6 + substitution.length/6 + substitution.length/6 + substitution.length/6)); j4++) {
+            document.getElementById('transposition_ligne_5').insertAdjacentHTML('beforeend', "<td class='vertical horizontal'>" + substitution[j4] + "</td>");
+        }
+
+        document.getElementById('transposition_ligne_6').innerHTML = "<td class='horizontal'> Message codé</td>";
+
+        for (var j5=(substitution.length/6 + substitution.length/6 + substitution.length/6 + substitution.length/6); (j5 >= (substitution.length/6 + substitution.length/6 + substitution.length/6 + substitution.length/6) && j5 < (substitution.length - substitution.length/6)); j5++) {
+            document.getElementById('transposition_ligne_6').insertAdjacentHTML('beforeend', "<td class='vertical horizontal'>" + substitution[j5] + "</td>");
+        }
+
+        document.getElementById('transposition_ligne_7').innerHTML = "<td class='horizontal'> Message codé</td>";
+
+        for (var j6=(substitution.length - substitution.length/6); (j6 >= (substitution.length - substitution.length/6) && j6 < (substitution.length)); j6++) {
+            document.getElementById('transposition_ligne_7').insertAdjacentHTML('beforeend', "<td class='vertical horizontal'>" + substitution[j6] + "</td>");
+        }
+    }
+
+    if (key.length === (substitution.length)/7) {
+        document.getElementById('transposition_ligne_2').innerHTML = "<td class='horizontal'> Message codé</td>";
+
+        for (var u=0; u < substitution.length/7; u++) {
+            document.getElementById('transposition_ligne_2').insertAdjacentHTML('beforeend', "<td class='vertical horizontal'>" + substitution[u] + "</td>");
+        }
+        document.getElementById('transposition_ligne_3').innerHTML = "<td class='horizontal'> Message codé</td>";
+
+        for (var u2=(substitution.length/7); (u2 >= (substitution.length/7) && u2 < (2*(substitution.length/7))); u2++) {
+            document.getElementById('transposition_ligne_3').insertAdjacentHTML('beforeend', "<td class='vertical horizontal'>" + substitution[u2] + "</td>");
+        }
+
+        document.getElementById('transposition_ligne_4').innerHTML = "<td class='horizontal'> Message codé</td>";
+
+        for (var u3=(2*(substitution.length/7)); (u3 >= (2*(substitution.length/7)) && u3 < (3*(substitution.length/7))); u3++) {
+            document.getElementById('transposition_ligne_4').insertAdjacentHTML('beforeend', "<td class='vertical horizontal'>" + substitution[u3] + "</td>");
+        }
+
+        document.getElementById('transposition_ligne_5').innerHTML = "<td class='horizontal'> Message codé</td>";
+
+        for (var u4=(3*(substitution.length/7)); (u4 >= (3*(substitution.length/7)) && u4 < (4*(substitution.length/7))); u4++) {
+            document.getElementById('transposition_ligne_5').insertAdjacentHTML('beforeend', "<td class='vertical horizontal'>" + substitution[u4] + "</td>");
+        }
+
+        document.getElementById('transposition_ligne_6').innerHTML = "<td class='horizontal'> Message codé</td>";
+
+        for (var u5=(4*(substitution.length/7)); (u5 >= (4*(substitution.length/7)) && u5 < (5*(substitution.length/7))); u5++) {
+            document.getElementById('transposition_ligne_6').insertAdjacentHTML('beforeend', "<td class='vertical horizontal'>" + substitution[u5] + "</td>");
+        }
+
+        document.getElementById('transposition_ligne_7').innerHTML = "<td class='horizontal'> Message codé</td>";
+
+        for (var u6=(5*(substitution.length/7)); (u6 >= (5*(substitution.length/7)) && u6 < (substitution.length - substitution.length/7)); u6++) {
+            document.getElementById('transposition_ligne_7').insertAdjacentHTML('beforeend', "<td class='vertical horizontal'>" + substitution[u6] + "</td>");
+        }
+
+        document.getElementById('transposition_ligne_8').innerHTML = "<td class='horizontal'> Message codé</td>";
+
+        for (var u7=(substitution.length - substitution.length/7); (u7 >= (substitution.length - substitution.length/7) && u7 < (substitution.length)); u7++) {
+            document.getElementById('transposition_ligne_8').insertAdjacentHTML('beforeend', "<td class='vertical horizontal'>" + substitution[u7] + "</td>");
+        }
+    }
+
+    if (key.length === (substitution.length)/8) {
+        document.getElementById('transposition_ligne_2').innerHTML = "<td class='horizontal'> Message codé</td>";
+
+        for (var w=0; w < substitution.length/8; w++) {
+            document.getElementById('transposition_ligne_2').insertAdjacentHTML('beforeend', "<td class='vertical horizontal'>" + substitution[w] + "</td>");
+        }
+        document.getElementById('transposition_ligne_3').innerHTML = "<td class='horizontal'> Message codé</td>";
+
+        for (var w2=(substitution.length/8); (w2 >= (substitution.length/8) && w2 < (2*(substitution.length/8))); w2++) {
+            document.getElementById('transposition_ligne_3').insertAdjacentHTML('beforeend', "<td class='vertical horizontal'>" + substitution[w2] + "</td>");
+        }
+
+        document.getElementById('transposition_ligne_4').innerHTML = "<td class='horizontal'> Message codé</td>";
+
+        for (var w3=(2*(substitution.length/8)); (w3 >= (2*(substitution.length/8)) && w3 < (3*(substitution.length/8))); w3++) {
+            document.getElementById('transposition_ligne_4').insertAdjacentHTML('beforeend', "<td class='vertical horizontal'>" + substitution[w3] + "</td>");
+        }
+
+        document.getElementById('transposition_ligne_5').innerHTML = "<td class='horizontal'> Message codé</td>";
+
+        for (var w4=(3*(substitution.length/8)); (w4 >= (3*(substitution.length/8)) && w4 < (4*(substitution.length/8))); w4++) {
+            document.getElementById('transposition_ligne_5').insertAdjacentHTML('beforeend', "<td class='vertical horizontal'>" + substitution[w4] + "</td>");
+        }
+
+        document.getElementById('transposition_ligne_6').innerHTML = "<td class='horizontal'> Message codé</td>";
+
+        for (var w5=(4*(substitution.length/8)); (w5 >= (4*(substitution.length/8)) && w5 < (5*(substitution.length/8))); w5++) {
+            document.getElementById('transposition_ligne_6').insertAdjacentHTML('beforeend', "<td class='vertical horizontal'>" + substitution[w5] + "</td>");
+        }
+
+        document.getElementById('transposition_ligne_7').innerHTML = "<td class='horizontal'> Message codé</td>";
+
+        for (var w6=(5*(substitution.length/8)); (w6 >= (5*(substitution.length/8)) && w6 < (6*(substitution.length/8))); w6++) {
+            document.getElementById('transposition_ligne_7').insertAdjacentHTML('beforeend', "<td class='vertical horizontal'>" + substitution[w6] + "</td>");
+        }
+
+        document.getElementById('transposition_ligne_8').innerHTML = "<td class='horizontal'> Message codé</td>";
+
+        for (var w7=(6*(substitution.length/8)); (w7 >= (6*(substitution.length/8)) && w7 < (substitution.length - substitution.length/8)); w7++) {
+            document.getElementById('transposition_ligne_8').insertAdjacentHTML('beforeend', "<td class='vertical horizontal'>" + substitution[w7] + "</td>");
+        }
+
+        document.getElementById('transposition_ligne_9').innerHTML = "<td class='horizontal'> Message codé</td>";
+
+        for (var w8=(substitution.length - substitution.length/8); (w8 >= (substitution.length - substitution.length/8) && w8 < substitution.length); w8++) {
+            document.getElementById('transposition_ligne_9').insertAdjacentHTML('beforeend', "<td class='vertical horizontal'>" + substitution[w8] + "</td>");
+        }
+    }
 }
