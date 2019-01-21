@@ -1,6 +1,7 @@
 const frLetterApparition = ['e', 'a', 'i', 's', 'n', 'r'];
 const enLetterApparition = ['e', 't', 'a', 'o', 'n', 'i'];
 
+
 /**
  * Permet de transformer le text en tableau contenant que 2 caractères par cellule
  * @param text
@@ -286,7 +287,7 @@ function hackChaine(text, langage) {
         }
 
 
-        for(var x=0; x< 50000; x++){
+        for(var x=0; x< 1000; x++){
             let tab = positionnementLettre(doublon, langage, t);
             let matrix = createMatrice(tab, alphabet);
 
@@ -305,12 +306,13 @@ function hackChaine(text, langage) {
         }
 
         possibility = cleanResult(possibility);
-    }
 
+    }
 
 
     return possibility;
 }
+
 
 /**
  * Permet de nettoyé le tableau de possibilité, on retire les nombre qui est un salt
