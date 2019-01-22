@@ -26,7 +26,7 @@ function searchDoublon(text){
             for(let a = i+1; a<tab.length; a++){
                 if(tab[i] === tab[a]){
                     let existing = false;
-                    for(var y = 0; y<doublon.length; y++){
+                    for(let y = 0; y<doublon.length; y++){
                         if(doublon[y][0] === tab[i]){
                             doublon[y][1] = doublon[y][1]+1;
                             existing = true;
@@ -53,10 +53,10 @@ function searchDoublon(text){
  * @returns {*}
  */
 function rangementParnbApparition(doublon, nb = 1) {
-    for (var i = 0; i < doublon.length; i++){
+    for (let i = 0; i < doublon.length; i++){
         if(i+1 < doublon.length){
             if(doublon[i+1][1] > doublon[i][1]){
-                var tmp = doublon[i];
+                let tmp = doublon[i];
                 doublon[i] = doublon[i+1];
                 doublon[i+1] = tmp;
             }
@@ -236,8 +236,8 @@ function hackChaine(text, langage) {
     this.lengthText = decoupage(text);
 
 
-    var txt = '';
-    var xmlhttp = new XMLHttpRequest();
+    let txt = '';
+    let xmlhttp = new XMLHttpRequest();
 
     xmlhttp.parent = this;
     xmlhttp.onreadystatechange = function(){
@@ -247,11 +247,16 @@ function hackChaine(text, langage) {
             let tabtext = xmlhttp.parent.lengthText;
 
 
-            var possibility = [];
+            let possibility = [];
             let allValue = txt.split('\n');
-            for (var i = 0; i<allValue.length; i++){
+
+
+
+
+            for (let i = 0; i<allValue.length; i++){
                 if(allValue[i].length === tabtext.length){
-                    if(condition(doublon, tabtext, allValue[i])){
+
+                    if(condition2(doublon, tabtext, allValue[i].toString().toLowerCase())){
                         possibility.push(allValue[i])
                     }
                 }
@@ -269,25 +274,32 @@ function hackChaine(text, langage) {
     return "aa";
 }
 
+/**
+ *
+ * @param doublon
+ * @param tab
+ * @param {string} mot
+ * @returns {string}
+ */
 function condition(doublon, tab, mot) {
-    let condition = "";
+    let condition = '';
 
     for (let x = 0; x < 15; x++){
-        if(x<14){
-            condition += "(";
-        }
 
         for (let i = 0; i < doublon.length; i++) {
             let multi = false;
+            if(i>0){
+                condition += '&&';
+            }
             condition += '(';
             for (let a = 0; a < tab.length; a++) {
-                if (doublon[i][0] == tab[a]) {
+                if (doublon[i][0] === tab[a]) {
                     if (multi) {
                         condition +='&&';
                     }
                     condition += '(';
 
-                    condition += (mot[a] + '==' + selection(x, frLetterApparition, i));
+                    condition += mot +'['+a+']' + '==' + selection(x, frLetterApparition, i);
                     multi = true;
                     condition += ')';
 
@@ -303,5 +315,127 @@ function condition(doublon, tab, mot) {
         }
     }
 
+    // for(var y = 0; y<mot.length; y++){
+    //     for(var u=y+1; u<mot.length;u++ ){
+    //         condition += '&& ('+mot+'['+y+']' +' != '+ mot+'['+u+'] )'
+    //     }
+    // }
+
     return condition
+}
+
+function condition2(doublon, tab, mot) {
+    let result = [];
+    let except = [];
+    let letter = [];
+
+    for (let x = 0; x < 15; x++){
+        let yes = false;
+
+        for (let i = 0; i < doublon.length; i++) {
+
+            for (let a = 0; a < tab.length; a++) {
+                if (doublon[i][0] === tab[a]) {
+
+                    let select = selection(x, frLetterApparition, i);
+                    if(except.find(function(element) { return element === a }) === undefined){
+                        except.push(a);
+                    }
+
+                    if(letter.find(function(element) { return element ===  select}) === undefined){
+                        letter.push(select);
+                    }
+
+                    if(mot[a] === select){
+                        yes = true;
+                    }
+                    else{
+                        yes = false;
+                    }
+                }
+            }
+
+        }
+        result.push(yes);
+    }
+
+    if(result.find(function(element) { return element === true; })){
+        let good =  [];
+
+        for (let y = 0; y < mot.length; y++){
+            for(let q = y+1; q < mot.length; q++){
+                if(mot[y] !== mot[q]){
+                    if((except.find(function(element) { return element === y }) !== undefined)){
+                        let yes = false;
+                        for (let t = 0; t < letter.length; t++){
+                            if(mot[y] === letter[t]){
+                                yes = true;
+                            }
+                        }
+
+                        if(yes){
+                            good.push(true);
+                        }
+                        else {
+                            good.push(false);
+                        }
+                    }
+                    else if((except.find(function(element) { return element === q }) !== undefined )){
+                        let yes = false;
+                        for (let t = 0; t < letter.length; t++){
+                            if(mot[q] === letter[t]){
+                                yes = true;
+                            }
+                        }
+
+                        if(yes){
+                            good.push(true);
+                        }
+                        else {
+                            good.push(false);
+                        }
+                    }
+                    else{
+                        good.push(true);
+                    }
+                }
+                else if((except.find(function(element) { return element === y }) !== undefined) &&
+                    (except.find(function(element) { return element === q }) !== undefined )
+                ){
+                    let yes = false;
+                    for (let t = 0; t < letter.length; t++){
+                        if(mot[y] === letter[t] && mot[q] === letter[t]){
+                            yes = true;
+                        }
+                    }
+
+                    if(yes){
+                        good.push(true);
+                    }
+                    else {
+                        good.push(false);
+                    }
+                }
+                else{
+                    good.push(false);
+                }
+            }
+        }
+
+        for(let z = 0; z < doublon.length; z++){
+            let oui = false;
+            for(let u = 0; u < letter.length; u++){
+                let regex = new RegExp(letter[u], "g");
+
+                if((mot.match(regex) || []).length === doublon[z][1]){
+                    oui = true;
+                }
+            }
+            good.push(oui);
+        }
+
+        return good.find(function(element) { return element === false; }) === undefined;
+    }
+
+    return false;
 }
