@@ -70,39 +70,6 @@ function rangementParnbApparition(doublon, nb = 1) {
     return doublon;
 }
 
-/**
- * Méthode permettant de positionner les lettres par rapport à la fréquence d'apparition
- * @param doublon
- */
-function positionnementLettre(doublon, langage, pos) {
-    var tab = [];
-    for (var i = 0; i < doublon.length; i++){
-        for (var b=0; b<6; b++){
-            // pour ne pas multiplie le nombre de champs en ligne
-            if(tab[b] === undefined){
-                tab[b] = [];
-            }
-
-            for (var a=0; a<6; a++){
-                if(doublon[i][0] === alphabetCaractSpecial[b]+alphabetCaractSpecial[a]){
-                    if(langage === "fr"){
-
-                        tab[b][a] = selection(pos, frLetterApparition,i);
-                    }
-                    else if(langage === "en"){
-                        tab[b][a] = selection(pos, enLetterApparition,i);
-                    }
-                }
-                // pour ne pas multiplie le nombre de champs en ligne
-                else if(tab[b].length < 6){
-                    tab[b].push('');
-                }
-            }
-        }
-    }
-    return tab;
-}
-
 function selection(pos, alphabat, index) {
     switch (pos){
         case 0:
@@ -254,124 +221,87 @@ function selection(pos, alphabat, index) {
     return false;
 }
 
+function openFile() {
+
+}
+
 /**
  * Permet de cryptanalysé le texte donnée et retourné un ensemble de possibilité
  * @param text
  * @returns {*}
  */
 function hackChaine(text, langage) {
-    let doublon = searchDoublon(text);
+    this.doublon = searchDoublon(text);
+
+    this.lengthText = decoupage(text);
 
 
-    let possibility = [];
+    var txt = '';
+    var xmlhttp = new XMLHttpRequest();
+
+    xmlhttp.parent = this;
+    xmlhttp.onreadystatechange = function(){
+        if(xmlhttp.status == 200 && xmlhttp.readyState == 4){
+            txt = xmlhttp.responseText;
+            let doublon = xmlhttp.parent.doublon;
+            let tabtext = xmlhttp.parent.lengthText;
 
 
-    for(var t=0; t<15; t++){
-
-        let alphabet = alphabetNum;
-
-
-        for(var i = 0; i< doublon.length; i++){
-            for (var b=0; b<6; b++){
-                for (var a=0; a<6; a++){
-                    if(doublon[i][0] === alphabetCaractSpecial[b]+alphabetCaractSpecial[a]){
-                        if(langage === "fr"){
-                            alphabet = remove(alphabet, selection(t, frLetterApparition,i));
-                        }
-                        else if(langage === "en"){
-                            alphabet = remove(alphabet, selection(t, enLetterApparition,i));
-                        }
+            var possibility = [];
+            let allValue = txt.split('\n');
+            for (var i = 0; i<allValue.length; i++){
+                if(allValue[i].length === tabtext.length){
+                    if(condition(doublon, tabtext, allValue[i])){
+                        possibility.push(allValue[i])
                     }
                 }
             }
+            console.log(possibility);
+
+            return txt;
+        }
+    };
+
+
+    xmlhttp.open("GET","dico.txt",true);
+    xmlhttp.send();
+
+    return "aa";
+}
+
+function condition(doublon, tab, mot) {
+    let condition = "";
+
+    for (let x = 0; x < 15; x++){
+        if(x<14){
+            condition += "(";
         }
 
+        for (let i = 0; i < doublon.length; i++) {
+            let multi = false;
+            condition += '(';
+            for (let a = 0; a < tab.length; a++) {
+                if (doublon[i][0] == tab[a]) {
+                    if (multi) {
+                        condition +='&&';
+                    }
+                    condition += '(';
 
-        for(var x=0; x< 1000; x++){
-            let tab = positionnementLettre(doublon, langage, t);
-            let matrix = createMatrice(tab, alphabet);
+                    condition += (mot[a] + '==' + selection(x, frLetterApparition, i));
+                    multi = true;
+                    condition += ')';
 
-            var result = "";
-            for (var a=0; a<text.length; a+=2){
-                var ligne = alphabetCaractSpecial.findIndex(function (element) {
-                    return element === text[a];
-                });
-
-                var col = alphabetCaractSpecial.findIndex(function (element) {
-                    return element === text[a+1];
-                });
-                result += matrix[ligne][col];
+                }
             }
-            possibility.push(result);
+            condition += ')';
         }
-
-        possibility = cleanResult(possibility);
-
-    }
-
-
-    return possibility;
-}
-
-
-/**
- * Permet de nettoyé le tableau de possibilité, on retire les nombre qui est un salt
- * @param tab
- * @returns {*}
- */
-function cleanResult(tab) {
-    let enter = false;
-    for(var t=0; t<tab.length; t++){
-        if(hasNumber(tab[t])){
-            tab = remove(tab, tab[t]);
-            enter = true;
+        if(x<14){
+            condition += ')||';
         }
-    }
-    if(enter){
-        return cleanResult(tab);
-    }
-
-    return tab;
-}
-
-/**
- * Permet de supprimer un élément du tableau
- * @param array
- * @param element
- * @returns {Int32Array | * | Uint32Array | T[] | Int8Array | Float64Array | Uint8Array | Int16Array | Float32Array | Uint8ClampedArray | Uint16Array}
- */
-function remove(array, element) {
-    return array.filter(el => el !== element);
-}
-
-/**
- * check si la chaine contien un chiffre
- * @param text
- * @returns {boolean}
- */
-function hasNumber(text) {
-    return /\d/.test(text);
-}
-
-/**
- * Permet  de crée une matrice en aléatoire
- * @param tab
- * @param alphabet
- * @returns {*}
- */
-function createMatrice(tab, alphabet) {
-
-    for (let i=0; i<6; i++){
-        for (let a=0; a<6; a++){
-            if(tab[i][a] === ""){
-                let num = Math.random() * alphabet.length;
-                let letter = alphabet[Math.floor(num)];
-                tab[i][a] = letter;
-
-                alphabet = remove(alphabet, letter);
-            }
+        else{
+            condition += ')';
         }
     }
 
-    return tab;
+    return condition
 }
