@@ -10,12 +10,12 @@
             <div class="text-clair-container">
                 <div>
                     <label for="clear_text">Texte clair :</label><br>
-                    <input type="text" name="clear_text" id="clear_text" placeholder="Entrer votre texte clair à crypter ici" />
+                    <input type="text" name="clear_text" id="clear_text" placeholder="Entrer votre texte clair à crypter ici" required/>
                 </div>
 
                 <div>
                     <label for="key">Clé de cryptage :</label><br>
-                    <input type="text" name="key" id="key" placeholder="Entrer votre clé de cryptage ici" />
+                    <input type="text" name="key" id="key" placeholder="Entrer votre clé de cryptage ici" required/>
                     <div id="manage_key">
                     </div>
                 </div>
@@ -23,25 +23,134 @@
 
             <button class="crypt-button" type="button" onclick="crypteMessage()">CRYPTER LE MESSAGE</button>
 
+            <p style="text-align: center;">Message crypté après la substitution simple:</p><textarea id="substitution"></textarea>
+
+            <p style="text-align: center; margin-top: 50px;">Message crypté après substitution et transposition par ordre <b>alphanumérique</b>:</p>
             <textarea id="crypted_text"></textarea>
         </form>
+
+        <div style="display: flex; justify-content: center;">
+            <table>
+                <caption>SUBSTITUTION =</caption>
+                <tr>
+                    <td class="horizontal"> </td>
+                    <td class="vertical horizontal">-</td>
+                    <td class="vertical horizontal">#</td>
+                    <td class="vertical horizontal">+</td>
+                    <td class="vertical horizontal">*</td>
+                    <td class="vertical horizontal">%</td>
+                    <td class="vertical horizontal">.</td>
+
+                </tr>
+                <tr>
+                    <td class="horizontal">-</td>
+                    <td class="vertical horizontal case1"></td>
+                    <td class="vertical horizontal case2"></td>
+                    <td class="vertical horizontal case3"></td>
+                    <td class="vertical horizontal case4"></td>
+                    <td class="vertical horizontal case5"></td>
+                    <td class="vertical horizontal case6"></td>
+                </tr>
+                <tr>
+                    <td class="horizontal">#</td>
+                    <td class="vertical horizontal case7"></td>
+                    <td class="vertical horizontal case8"></td>
+                    <td class="vertical horizontal case9"></td>
+                    <td class="vertical horizontal case10"></td>
+                    <td class="vertical horizontal case11"></td>
+                    <td class="vertical horizontal case12"></td>
+                </tr>
+                <tr>
+                    <td class="horizontal">+</td>
+                    <td class="vertical horizontal case13"></td>
+                    <td class="vertical horizontal case14"></td>
+                    <td class="vertical horizontal case15"></td>
+                    <td class="vertical horizontal case16"></td>
+                    <td class="vertical horizontal case17"></td>
+                    <td class="vertical horizontal case18"></td>
+                </tr>
+                <tr>
+                    <td class="horizontal">*</td>
+                    <td class="vertical horizontal case19"></td>
+                    <td class="vertical horizontal case20"></td>
+                    <td class="vertical horizontal case21"></td>
+                    <td class="vertical horizontal case22"></td>
+                    <td class="vertical horizontal case23"></td>
+                    <td class="vertical horizontal case24"></td>
+                </tr>
+                <tr>
+                    <td class="horizontal">%</td>
+                    <td class="vertical horizontal case25"></td>
+                    <td class="vertical horizontal case26"></td>
+                    <td class="vertical horizontal case27"></td>
+                    <td class="vertical horizontal case28"></td>
+                    <td class="vertical horizontal case29"></td>
+                    <td class="vertical horizontal case30"></td>
+                </tr>
+                <tr>
+                    <td class="horizontal">.</td>
+                    <td class="vertical horizontal case31"></td>
+                    <td class="vertical horizontal case32"></td>
+                    <td class="vertical horizontal case33"></td>
+                    <td class="vertical horizontal case34"></td>
+                    <td class="vertical horizontal case35"></td>
+                    <td class="vertical horizontal case36"></td>
+                </tr>
+
+            </table>
+
+            <table>
+                <caption>TRANSPOSITION =</caption>
+                <tr class="horizontal" id="transposition_ligne_1">
+
+                </tr>
+                <tr class="horizontal" id="transposition_ligne_2">
+
+                </tr>
+                <tr class="horizontal" id="transposition_ligne_3">
+
+                </tr>
+                <tr class="horizontal" id="transposition_ligne_4">
+
+                </tr>
+                <tr class="horizontal" id="transposition_ligne_5">
+
+                </tr>
+                <tr class="horizontal" id="transposition_ligne_6">
+
+                </tr>
+                </tr>
+                <tr class="horizontal" id="transposition_ligne_7">
+
+                </tr>
+                <tr class="horizontal" id="transposition_ligne_8">
+
+                </tr>
+                <tr class="horizontal" id="transposition_ligne_9">
+
+                </tr>
+            </table>
+
+        </div>
 
         <form>
             <div class="text-crypte-container">
                 <div>
                     <label for="crypte_text">Texte crypté :</label><br>
-                    <input type="text" name="crypte_text" id="crypte_text" placeholder="Entrer votre texte crypté à décrypter ici" />
+                    <input type="text" name="crypte_text" id="crypte_text" placeholder="Entrer votre texte crypté à décrypter ici" required/>
                 </div>
 
                 <div>
                     <label for="key_decrypt">Clé de décryptage :</label><br>
-                    <input type="text" name="key_decrypt" id="key_decrypt" placeholder="Entrer votre clé de décryptage ici" />
+                    <input type="text" name="key_decrypt" id="key_decrypt" placeholder="Entrer votre clé de décryptage ici" required/>
                     <div id="manage_key2">
                     </div>
                 </div>
             </div>
 
             <button class="decrypt-button" type="button" onclick="decrypteMessage()">DECRYPTER LE MESSAGE</button>
+
+            <p style="text-align: center; margin-top: 50px;">Message décrypté après transposition par ordre <b>alphanumérique</b> et substitution:</p>
 
             <textarea id="decrypted_text"></textarea>
         </form>
