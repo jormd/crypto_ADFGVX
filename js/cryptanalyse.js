@@ -221,9 +221,6 @@ function selection(pos, alphabat, index) {
     return false;
 }
 
-function openFile() {
-
-}
 
 /**
  * Permet de cryptanalysé le texte donnée et retourné un ensemble de possibilité
@@ -261,7 +258,9 @@ function hackChaine(text, langage) {
                     }
                 }
             }
-            console.log(possibility);
+
+            var textarea = document.getElementById("decryptanalyse_text");
+            textarea.innerHTML = possibility.join(", ");
 
             return txt;
         }
@@ -279,55 +278,6 @@ function hackChaine(text, langage) {
     return "aa";
 }
 
-/**
- *
- * @param doublon
- * @param tab
- * @param {string} mot
- * @returns {string}
- */
-function condition(doublon, tab, mot, langage) {
-    let condition = '';
-
-    for (let x = 0; x < 15; x++){
-
-        for (let i = 0; i < doublon.length; i++) {
-            let multi = false;
-            if(i>0){
-                condition += '&&';
-            }
-            condition += '(';
-            for (let a = 0; a < tab.length; a++) {
-                if (doublon[i][0] === tab[a]) {
-                    if (multi) {
-                        condition +='&&';
-                    }
-                    condition += '(';
-
-                    condition += mot +'['+a+']' + '==' + selection(x, frLetterApparition, i);
-                    multi = true;
-                    condition += ')';
-
-                }
-            }
-            condition += ')';
-        }
-        if(x<14){
-            condition += ')||';
-        }
-        else{
-            condition += ')';
-        }
-    }
-
-    // for(var y = 0; y<mot.length; y++){
-    //     for(var u=y+1; u<mot.length;u++ ){
-    //         condition += '&& ('+mot+'['+y+']' +' != '+ mot+'['+u+'] )'
-    //     }
-    // }
-
-    return condition
-}
 
 function condition2(doublon, tab, mot, langage) {
     let result = [];
@@ -435,17 +385,17 @@ function condition2(doublon, tab, mot, langage) {
             }
         }
 
-        // for(let z = 0; z < doublon.length; z++){
-        //     let oui = false;
-        //     for(let u = 0; u < letter.length; u++){
-        //         let regex = new RegExp(letter[u], "g");
-        //
-        //         if((mot.match(regex) || []).length === doublon[z][1]){
-        //             oui = true;
-        //         }
-        //     }
-        //     good.push(oui);
-        // }
+        for(let z = 0; z < doublon.length; z++){
+            let oui = false;
+            for(let u = 0; u < letter.length; u++){
+                let regex = new RegExp(letter[u], "g");
+
+                if((mot.match(regex) || []).length === doublon[z][1]){
+                    oui = true;
+                }
+            }
+            good.push(oui);
+        }
 
         return good.find(function(element) { return element === false; }) === undefined;
     }
