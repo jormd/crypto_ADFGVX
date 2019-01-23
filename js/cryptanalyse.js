@@ -256,7 +256,7 @@ function hackChaine(text, langage) {
             for (let i = 0; i<allValue.length; i++){
                 if(allValue[i].length === tabtext.length){
 
-                    if(condition2(doublon, tabtext, allValue[i].toString().toLowerCase())){
+                    if(condition2(doublon, tabtext, allValue[i].toString().toLowerCase(), langage)){
                         possibility.push(allValue[i])
                     }
                 }
@@ -267,8 +267,13 @@ function hackChaine(text, langage) {
         }
     };
 
+    if(langage === "fr"){
+        xmlhttp.open("GET","dico.txt",true);
+    }
+    else if(langage === "en"){
+        xmlhttp.open("GET","dicoEn.txt",true);
+    }
 
-    xmlhttp.open("GET","dico.txt",true);
     xmlhttp.send();
 
     return "aa";
@@ -281,7 +286,7 @@ function hackChaine(text, langage) {
  * @param {string} mot
  * @returns {string}
  */
-function condition(doublon, tab, mot) {
+function condition(doublon, tab, mot, langage) {
     let condition = '';
 
     for (let x = 0; x < 15; x++){
@@ -324,7 +329,7 @@ function condition(doublon, tab, mot) {
     return condition
 }
 
-function condition2(doublon, tab, mot) {
+function condition2(doublon, tab, mot, langage) {
     let result = [];
     let except = [];
     let letter = [];
@@ -337,7 +342,15 @@ function condition2(doublon, tab, mot) {
             for (let a = 0; a < tab.length; a++) {
                 if (doublon[i][0] === tab[a]) {
 
-                    let select = selection(x, frLetterApparition, i);
+                    let select = "";
+
+                    if(langage === "fr"){
+                        select = selection(x, frLetterApparition, i);
+                    }
+                    else if(langage === "en"){
+                        select = selection(x, enLetterApparition, i);
+                    }
+
                     if(except.find(function(element) { return element === a }) === undefined){
                         except.push(a);
                     }
@@ -422,17 +435,17 @@ function condition2(doublon, tab, mot) {
             }
         }
 
-        for(let z = 0; z < doublon.length; z++){
-            let oui = false;
-            for(let u = 0; u < letter.length; u++){
-                let regex = new RegExp(letter[u], "g");
-
-                if((mot.match(regex) || []).length === doublon[z][1]){
-                    oui = true;
-                }
-            }
-            good.push(oui);
-        }
+        // for(let z = 0; z < doublon.length; z++){
+        //     let oui = false;
+        //     for(let u = 0; u < letter.length; u++){
+        //         let regex = new RegExp(letter[u], "g");
+        //
+        //         if((mot.match(regex) || []).length === doublon[z][1]){
+        //             oui = true;
+        //         }
+        //     }
+        //     good.push(oui);
+        // }
 
         return good.find(function(element) { return element === false; }) === undefined;
     }
