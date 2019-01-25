@@ -1,5 +1,5 @@
-const frLetterApparition = ['e', 'a', 'i', 's', 'n', 'r', 't', 'o', 'l', 'u', 'd', 'c', 'm', 'p'];
-const enLetterApparition = ['e', 't', 'a', 'o', 'n', 'i', 's', 'r', 'h', 'l', 'd', 'c', 'u', 'm'];
+const frLetterApparition = ['e', 'a', 'i', 's', 'n', 'r', 't', 'o', 'l', 'u', 'd', 'c', 'm', 'p', 'g', 'b', 'v', 'h', 'f', 'q', 'y', 'x', 'j', 'k', 'w', 'z'];
+const enLetterApparition = ['e', 't', 'a', 'o', 'n', 'i', 's', 'r', 'h', 'l', 'd', 'c', 'u', 'm', 'f', 'p', 'w', 'g', 'b', 'y', 'v', 'k', 'x', 'j', 'q', 'z'];
 
 
 /**
@@ -72,81 +72,143 @@ function rangementParnbApparition(doublon, nb = 1) {
 
 function selection(pos, alphabat, index) {
 
-    if(pos < 14){
+    if(pos < 26){
 
         if(index === 0){
             return alphabat[index]
         }
 
-        return alphabat[(index+1)%13]
+        return alphabat[(index+1)%26]
 
-    }else if(pos < 26){
+    }else if(pos < 50){
 
         if(index === 0){
             return alphabat[index+1]
         }
 
-        return alphabat[(index+2)%13]
+        return alphabat[(index+2)%26]
 
-    }else if (pos < 37){
+    }else if (pos < 73){
 
         if(index === 0){
             return alphabat[index+2]
         }
 
-        return alphabat[(index+3)%13]
+        return alphabat[(index+3)%26]
 
-    }else if (pos < 47){
+    }else if (pos < 95){
         if(index === 0){
             return alphabat[index+3]
         }
-        return alphabat[(index+4)%13]
-    }else if (pos < 56){
+        return alphabat[(index+4)%26]
+    }else if (pos < 116){
         if(index === 0){
             return alphabat[index+4]
         }
-        return alphabat[(index+5)%13]
-    }else if (pos < 64){
+        return alphabat[(index+5)%26]
+    }else if (pos < 136){
         if(index === 0){
             return alphabat[index+5]
         }
-        return alphabat[(index+6)%13]
-    }else if (pos < 71){
+        return alphabat[(index+6)%26]
+    }else if (pos < 155){
         if(index === 0){
             return alphabat[index+6]
         }
-        return alphabat[(index+7)%13]
-    }else if (pos < 77){
+        return alphabat[(index+7)%26]
+    }else if (pos < 173){
         if(index === 0){
             return alphabat[index+7]
         }
-        return alphabat[(index+8)%13]
-    }else if (pos < 82){
+        return alphabat[(index+8)%26]
+    }else if (pos < 190){
         if(index === 0){
             return alphabat[index+8]
         }
-        return alphabat[(index+9)%13]
-    }else if (pos < 86){
+        return alphabat[(index+9)%26]
+    }else if (pos < 206){
         if(index === 0){
             return alphabat[index+9]
         }
-        return alphabat[(index+10)%13]
-    }else if (pos < 89){
+        return alphabat[(index+10)%26]
+    }else if (pos < 221){
         if(index === 0){
             return alphabat[index+10]
         }
-        return alphabat[(index+11)%13]
-    }else if (pos < 91){
+        return alphabat[(index+11)%26]
+    }else if (pos < 235){
         if(index === 0){
             return alphabat[index+11]
         }
-        return alphabat[(index+12)%13]
-    }else if (pos < 92){
+        return alphabat[(index+12)%26]
+    }else if (pos < 248){
         if(index === 0){
             return alphabat[index+12]
         }
-        return alphabat[(index+13)%13]
+        return alphabat[(index+13)%26]
     }
+    else if(pos < 260){
+        if(index === 0){
+            return alphabat[index+13]
+        }
+        return alphabat[(index+14)%26]
+    }else if(pos < 271){
+        if(index === 0){
+            return alphabat[index+14]
+        }
+        return alphabat[(index+15)%26]
+    }else if(pos < 281){
+        if(index === 0){
+            return alphabat[index+15]
+        }
+        return alphabat[(index+16)%26]
+    }else if(pos < 290){
+        if(index === 0){
+            return alphabat[index+16]
+        }
+        return alphabat[(index+17)%26]
+    }else if(pos < 298){
+        if(index === 0){
+            return alphabat[index+17]
+        }
+        return alphabat[(index+18)%26]
+    }else if(pos < 305){
+        if(index === 0){
+            return alphabat[index+18]
+        }
+        return alphabat[(index+19)%26]
+    }else if(pos < 311){
+        if(index === 0){
+            return alphabat[index+19]
+        }
+        return alphabat[(index+20)%26]
+    }else if(pos < 316){
+        if(index === 0){
+            return alphabat[index+20]
+        }
+        return alphabat[(index+21)%26]
+    }else if(pos < 320){
+        if(index === 0){
+            return alphabat[index+21]
+        }
+        return alphabat[(index+22)%26]
+    }else if(pos < 323){
+        if(index === 0){
+            return alphabat[index+22]
+        }
+        return alphabat[(index+23)%26]
+    }else if(pos < 325){
+        if(index === 0){
+            return alphabat[index+23]
+        }
+        return alphabat[(index+24)%26]
+    }else if(pos < 326){
+        if(index === 0){
+            return alphabat[index+24]
+        }
+        return alphabat[(index+25)%26]
+    }
+
 
     //
     // switch (pos){
@@ -362,7 +424,7 @@ function condition2(doublon, tab, mot, langage) {
     let except = [];
     let letter = [];
 
-    for (let x = 0; x < 92; x++){
+    for (let x = 0; x < 325; x++){
         let yes = false;
 
         for (let i = 0; i < doublon.length; i++) {
@@ -401,6 +463,7 @@ function condition2(doublon, tab, mot, langage) {
     }
 
     if(result.find(function(element) { return element === true; })){
+        return true;
         let good =  [];
 
         for (let y = 0; y < mot.length; y++){
@@ -463,17 +526,17 @@ function condition2(doublon, tab, mot, langage) {
             }
         }
 
-        for(let z = 0; z < doublon.length; z++){
-            let oui = false;
-            for(let u = 0; u < letter.length; u++){
-                let regex = new RegExp(letter[u], "g");
-
-                if((mot.match(regex) || []).length === doublon[z][1]){
-                    oui = true;
-                }
-            }
-            good.push(oui);
-        }
+        // for(let z = 0; z < doublon.length; z++){
+        //     let oui = false;
+        //     for(let u = 0; u < letter.length; u++){
+        //         let regex = new RegExp(letter[u], "g");
+        //
+        //         if((mot.match(regex) || []).length === doublon[z][1]){
+        //             oui = true;
+        //         }
+        //     }
+        //     good.push(oui);
+        // }
 
         return good.find(function(element) { return element === false; }) === undefined;
     }
