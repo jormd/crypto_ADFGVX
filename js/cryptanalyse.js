@@ -1,5 +1,5 @@
-const frLetterApparition = ['e', 'a', 'i', 's', 'n', 'r'];
-const enLetterApparition = ['e', 't', 'a', 'o', 'n', 'i'];
+const frLetterApparition = ['e', 'a', 'i', 's', 'n', 'r', 't', 'o', 'l', 'u', 'd', 'c', 'm', 'p'];
+const enLetterApparition = ['e', 't', 'a', 'o', 'n', 'i', 's', 'r', 'h', 'l', 'd', 'c', 'u', 'm'];
 
 
 /**
@@ -71,153 +71,231 @@ function rangementParnbApparition(doublon, nb = 1) {
 }
 
 function selection(pos, alphabat, index) {
-    switch (pos){
-        case 0:
-            return alphabat[index];
-            break;
-        case 1:
-            if(index === 0){
-                return alphabat[index]
-            }
-            if(index+1 > 6){
-                return alphabat[(index+1)%6]
-            }
-            return alphabat[index+1];
-            break;
-        case 2:
-            if(index === 0){
-                return alphabat[index]
-            }
-            if(index+2 > 6){
-                return alphabat[(index+2)%6];
 
-            }
-            return alphabat[index+2];
-            break;
-        case 3:
-            if(index === 0){
-                return alphabat[index]
-            }
-            if(index+3 > 6){
-                return alphabat[(index+2)%6];
+    if(pos < 14){
 
-            }
-            return alphabat[index+3];
-            break;
-        case 4:
-            if(index === 0){
-                return alphabat[index]
-            }
-            if(index+4 > 6){
-                return alphabat[(index+4)%6];
+        if(index === 0){
+            return alphabat[index]
+        }
 
-            }
-            return alphabat[index+4];
-            break;
-        case 5:
-            if(index === 0){
-                return alphabat[index+1]
-            }
-            if(index+1 > 6){
-                return alphabat[(index+1)%6];
+        return alphabat[(index+1)%13]
 
-            }
-            return alphabat[index+1];
-            break;
-        case 6:
-            if(index === 0){
-                return alphabat[index+1]
-            }
-            if(index+2 > 6){
-                return alphabat[(index+2)%6];
+    }else if(pos < 26){
 
-            }
-            return alphabat[index+2];
-            break;
-        case 7:
-            if(index === 0){
-                return alphabat[index+1]
-            }
-            if(index+3 > 6){
-                return alphabat[(index+3)%6];
+        if(index === 0){
+            return alphabat[index+1]
+        }
 
-            }
-            return alphabat[index+3];
-            break;
-        case 8:
-            if(index === 0){
-                return alphabat[index+1]
-            }
-            if(index+4 > 6){
-                return alphabat[(index+4)%6];
+        return alphabat[(index+2)%13]
 
-            }
-            return alphabat[index+4];
-            break;
-        case 9:
-            if(index === 0){
-                return alphabat[index+2]
-            }
-            if(index+2 > 6){
-                return alphabat[(index+2)%6];
+    }else if (pos < 37){
 
-            }
-            return alphabat[index+2];
-            break;
-        case 10:
-            if(index === 0){
-                return alphabat[index+2]
-            }
-            if(index+3 > 6){
-                return alphabat[(index+3)%6];
+        if(index === 0){
+            return alphabat[index+2]
+        }
 
-            }
-            return alphabat[index+3];
-            break;
-        case 11:
-            if(index === 0){
-                return alphabat[index+2]
-            }
-            if(index+4 > 6){
-                return alphabat[(index+4)%6];
+        return alphabat[(index+3)%13]
 
-            }
-            return alphabat[index+4];
-            break;
-        case 12:
-            if(index === 0){
-                return alphabat[index+3]
-            }
-            if(index+3 > 6){
-                return alphabat[(index+3)%6];
-
-            }
-            return alphabat[index+3];
-            break;
-        case 13:
-            if(index === 0){
-                return alphabat[index+3]
-            }
-            if(index+4 > 6){
-                return alphabat[(index+4)%6];
-
-            }
-            return alphabat[index+4];
-            break;
-        case 14:
-            if(index === 0){
-                return alphabat[index+4]
-            }
-            if(index+4 > 6){
-                return alphabat[(index+4)%6];
-
-            }
-            return alphabat[index+4];
-            break;
-        default:
-                return null;
-            break;
+    }else if (pos < 47){
+        if(index === 0){
+            return alphabat[index+3]
+        }
+        return alphabat[(index+4)%13]
+    }else if (pos < 56){
+        if(index === 0){
+            return alphabat[index+4]
+        }
+        return alphabat[(index+5)%13]
+    }else if (pos < 64){
+        if(index === 0){
+            return alphabat[index+5]
+        }
+        return alphabat[(index+6)%13]
+    }else if (pos < 71){
+        if(index === 0){
+            return alphabat[index+6]
+        }
+        return alphabat[(index+7)%13]
+    }else if (pos < 77){
+        if(index === 0){
+            return alphabat[index+7]
+        }
+        return alphabat[(index+8)%13]
+    }else if (pos < 82){
+        if(index === 0){
+            return alphabat[index+8]
+        }
+        return alphabat[(index+9)%13]
+    }else if (pos < 86){
+        if(index === 0){
+            return alphabat[index+9]
+        }
+        return alphabat[(index+10)%13]
+    }else if (pos < 89){
+        if(index === 0){
+            return alphabat[index+10]
+        }
+        return alphabat[(index+11)%13]
+    }else if (pos < 91){
+        if(index === 0){
+            return alphabat[index+11]
+        }
+        return alphabat[(index+12)%13]
+    }else if (pos < 92){
+        if(index === 0){
+            return alphabat[index+12]
+        }
+        return alphabat[(index+13)%13]
     }
+
+    //
+    // switch (pos){
+    //     case 0:
+    //         return alphabat[index];
+    //         break;
+    //     case 1:
+    //         if(index === 0){
+    //             return alphabat[index]
+    //         }
+    //         if(index+1 > 6){
+    //             return alphabat[(index+1)%6]
+    //         }
+    //         return alphabat[index+1];
+    //         break;
+    //     case 2:
+    //         if(index === 0){
+    //             return alphabat[index]
+    //         }
+    //         if(index+2 > 6){
+    //             return alphabat[(index+2)%6];
+    //
+    //         }
+    //         return alphabat[index+2];
+    //         break;
+    //     case 3:
+    //         if(index === 0){
+    //             return alphabat[index]
+    //         }
+    //         if(index+3 > 6){
+    //             return alphabat[(index+2)%6];
+    //
+    //         }
+    //         return alphabat[index+3];
+    //         break;
+    //     case 4:
+    //         if(index === 0){
+    //             return alphabat[index]
+    //         }
+    //         if(index+4 > 6){
+    //             return alphabat[(index+4)%6];
+    //
+    //         }
+    //         return alphabat[index+4];
+    //         break;
+    //     case 5:
+    //         if(index === 0){
+    //             return alphabat[index+1]
+    //         }
+    //         if(index+1 > 6){
+    //             return alphabat[(index+1)%6];
+    //
+    //         }
+    //         return alphabat[index+1];
+    //         break;
+    //     case 6:
+    //         if(index === 0){
+    //             return alphabat[index+1]
+    //         }
+    //         if(index+2 > 6){
+    //             return alphabat[(index+2)%6];
+    //
+    //         }
+    //         return alphabat[index+2];
+    //         break;
+    //     case 7:
+    //         if(index === 0){
+    //             return alphabat[index+1]
+    //         }
+    //         if(index+3 > 6){
+    //             return alphabat[(index+3)%6];
+    //
+    //         }
+    //         return alphabat[index+3];
+    //         break;
+    //     case 8:
+    //         if(index === 0){
+    //             return alphabat[index+1]
+    //         }
+    //         if(index+4 > 6){
+    //             return alphabat[(index+4)%6];
+    //
+    //         }
+    //         return alphabat[index+4];
+    //         break;
+    //     case 9:
+    //         if(index === 0){
+    //             return alphabat[index+2]
+    //         }
+    //         if(index+2 > 6){
+    //             return alphabat[(index+2)%6];
+    //
+    //         }
+    //         return alphabat[index+2];
+    //         break;
+    //     case 10:
+    //         if(index === 0){
+    //             return alphabat[index+2]
+    //         }
+    //         if(index+3 > 6){
+    //             return alphabat[(index+3)%6];
+    //
+    //         }
+    //         return alphabat[index+3];
+    //         break;
+    //     case 11:
+    //         if(index === 0){
+    //             return alphabat[index+2]
+    //         }
+    //         if(index+4 > 6){
+    //             return alphabat[(index+4)%6];
+    //
+    //         }
+    //         return alphabat[index+4];
+    //         break;
+    //     case 12:
+    //         if(index === 0){
+    //             return alphabat[index+3]
+    //         }
+    //         if(index+3 > 6){
+    //             return alphabat[(index+3)%6];
+    //
+    //         }
+    //         return alphabat[index+3];
+    //         break;
+    //     case 13:
+    //         if(index === 0){
+    //             return alphabat[index+3]
+    //         }
+    //         if(index+4 > 6){
+    //             return alphabat[(index+4)%6];
+    //
+    //         }
+    //         return alphabat[index+4];
+    //         break;
+    //     case 14:
+    //         if(index === 0){
+    //             return alphabat[index+4]
+    //         }
+    //         if(index+4 > 6){
+    //             return alphabat[(index+4)%6];
+    //
+    //         }
+    //         return alphabat[index+4];
+    //         break;
+    //     default:
+    //             return null;
+    //         break;
+    // }
     return false;
 }
 
@@ -284,7 +362,7 @@ function condition2(doublon, tab, mot, langage) {
     let except = [];
     let letter = [];
 
-    for (let x = 0; x < 15; x++){
+    for (let x = 0; x < 92; x++){
         let yes = false;
 
         for (let i = 0; i < doublon.length; i++) {
@@ -305,12 +383,12 @@ function condition2(doublon, tab, mot, langage) {
                         except.push(a);
                     }
 
-                    if(letter.find(function(element) { return element ===  select}) === undefined){
-                        letter.push(select);
-                    }
-
                     if(mot[a] === select){
                         yes = true;
+
+                        if(letter.find(function(element) { return element ===  select}) === undefined){
+                            letter.push(select);
+                        }
                     }
                     else{
                         yes = false;
