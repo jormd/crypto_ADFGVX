@@ -22,28 +22,29 @@ function searchDoublon(text){
     let compt = 0;
 
     for(let i = 0; i<tab.length; i++){
-        if(doublon[tab[i]] == null){
-            for(let a = i+1; a<tab.length; a++){
-                if(tab[i] === tab[a]){
-                    let existing = false;
-                    for(let y = 0; y<doublon.length; y++){
-                        if(doublon[y][0] === tab[i]){
-                            doublon[y][1] = doublon[y][1]+1;
-                            existing = true;
-                        }
-                    }
-                    if(!existing){
-                        doublon[compt] = [];
-                        doublon[compt][0] = tab[i];
-                        doublon[compt][1] = 2;
-                        compt++;
+        for(let a = i+1; a<tab.length; a++){
+            if(tab[i] === tab[a]){
+                let existing = false;
+                for(let y = 0; y<doublon.length; y++){
+                    if(doublon[y][0] === tab[i]){
+                        doublon[y][1].push(i);
+                        existing = true;
                     }
                 }
+                if(!existing){
+                    doublon[compt] = [];
+                    doublon[compt][0] = tab[i];
+                    doublon[compt][1] = [];
+                    doublon[compt][1].push(i);
+                    doublon[compt][1].push(a);
+                    compt++;
+                }
             }
+
         }
     }
 
-    return rangementParnbApparition(doublon);
+    return doublon;
 }
 
 /**
@@ -209,155 +210,6 @@ function selection(pos, alphabat, index) {
         return alphabat[(index+24)]
     }
 
-
-    //
-    // switch (pos){
-    //     case 0:
-    //         return alphabat[index];
-    //         break;
-    //     case 1:
-    //         if(index === 0){
-    //             return alphabat[index]
-    //         }
-    //         if(index+1 > 6){
-    //             return alphabat[(index+1)%6]
-    //         }
-    //         return alphabat[index+1];
-    //         break;
-    //     case 2:
-    //         if(index === 0){
-    //             return alphabat[index]
-    //         }
-    //         if(index+2 > 6){
-    //             return alphabat[(index+2)%6];
-    //
-    //         }
-    //         return alphabat[index+2];
-    //         break;
-    //     case 3:
-    //         if(index === 0){
-    //             return alphabat[index]
-    //         }
-    //         if(index+3 > 6){
-    //             return alphabat[(index+2)%6];
-    //
-    //         }
-    //         return alphabat[index+3];
-    //         break;
-    //     case 4:
-    //         if(index === 0){
-    //             return alphabat[index]
-    //         }
-    //         if(index+4 > 6){
-    //             return alphabat[(index+4)%6];
-    //
-    //         }
-    //         return alphabat[index+4];
-    //         break;
-    //     case 5:
-    //         if(index === 0){
-    //             return alphabat[index+1]
-    //         }
-    //         if(index+1 > 6){
-    //             return alphabat[(index+1)%6];
-    //
-    //         }
-    //         return alphabat[index+1];
-    //         break;
-    //     case 6:
-    //         if(index === 0){
-    //             return alphabat[index+1]
-    //         }
-    //         if(index+2 > 6){
-    //             return alphabat[(index+2)%6];
-    //
-    //         }
-    //         return alphabat[index+2];
-    //         break;
-    //     case 7:
-    //         if(index === 0){
-    //             return alphabat[index+1]
-    //         }
-    //         if(index+3 > 6){
-    //             return alphabat[(index+3)%6];
-    //
-    //         }
-    //         return alphabat[index+3];
-    //         break;
-    //     case 8:
-    //         if(index === 0){
-    //             return alphabat[index+1]
-    //         }
-    //         if(index+4 > 6){
-    //             return alphabat[(index+4)%6];
-    //
-    //         }
-    //         return alphabat[index+4];
-    //         break;
-    //     case 9:
-    //         if(index === 0){
-    //             return alphabat[index+2]
-    //         }
-    //         if(index+2 > 6){
-    //             return alphabat[(index+2)%6];
-    //
-    //         }
-    //         return alphabat[index+2];
-    //         break;
-    //     case 10:
-    //         if(index === 0){
-    //             return alphabat[index+2]
-    //         }
-    //         if(index+3 > 6){
-    //             return alphabat[(index+3)%6];
-    //
-    //         }
-    //         return alphabat[index+3];
-    //         break;
-    //     case 11:
-    //         if(index === 0){
-    //             return alphabat[index+2]
-    //         }
-    //         if(index+4 > 6){
-    //             return alphabat[(index+4)%6];
-    //
-    //         }
-    //         return alphabat[index+4];
-    //         break;
-    //     case 12:
-    //         if(index === 0){
-    //             return alphabat[index+3]
-    //         }
-    //         if(index+3 > 6){
-    //             return alphabat[(index+3)%6];
-    //
-    //         }
-    //         return alphabat[index+3];
-    //         break;
-    //     case 13:
-    //         if(index === 0){
-    //             return alphabat[index+3]
-    //         }
-    //         if(index+4 > 6){
-    //             return alphabat[(index+4)%6];
-    //
-    //         }
-    //         return alphabat[index+4];
-    //         break;
-    //     case 14:
-    //         if(index === 0){
-    //             return alphabat[index+4]
-    //         }
-    //         if(index+4 > 6){
-    //             return alphabat[(index+4)%6];
-    //
-    //         }
-    //         return alphabat[index+4];
-    //         break;
-    //     default:
-    //             return null;
-    //         break;
-    // }
     return false;
 }
 
@@ -392,10 +244,84 @@ function hackChaine(text, langage) {
 
             for (let i = 0; i<allValue.length; i++){
                 if(allValue[i].length === tabtext.length){
+                    let good = [];
 
-                    if(condition2(doublon, tabtext, allValue[i].toString().toLowerCase(), langage)){
-                        possibility.push(allValue[i])
+                    let mot = allValue[i];
+let notTouch = [];
+
+                    for(let a=0; a < doublon.length; a++){
+                        let value = doublon[a][1];
+                        if(value > 2){
+                            if(mot[(value[0])] === mot[(value[1])] && mot[(value[0])] === mot[(value[2])]){
+                                notTouch.push(value[0])
+                                notTouch.push(value[1])
+                                notTouch.push(value[2])
+                                good.push(true);
+                            }
+                            else{
+                                good.push(false);
+                            }
+                        }
+                        else{
+                            if(mot[(value[0])] === mot[(value[1])]){
+                                notTouch.push(value[0])
+                                notTouch.push(value[1])
+                                good.push(true);
+                            }
+                            else{
+                                good.push(false);
+                            }
+                        }
+
                     }
+
+                    for(let b=0; b < mot.length; b++){
+                        for(let u=b+1; u < mot.length; u++){
+                            if(mot[b] !== mot[u]){
+                                good.push(true);
+                            }
+                            else{
+
+                                let enter =  false;
+
+                                for(let a=0; a < doublon.length; a++) {
+                                    let value = doublon[a][1];
+
+
+                                    if(value.find(function(element) { return element === b }) !== undefined || value.find(function(element) { return element === u }) !== undefined){
+                                        enter = true;
+                                    }
+                                }
+
+
+                                if(enter){
+                                    good.push(true);
+                                }
+                                else{
+                                    good.push(false);
+
+                                }
+
+                            }
+                        }
+                    }
+
+                    let yes = true;
+
+                    for(var y = 0; y< good.length; y++){
+                        if(!good[y]){
+                            yes = false;
+                        }
+                    }
+
+                    if(yes){
+                        possibility.push(mot);
+                    }
+
+
+                    // if(condition2(doublon, tabtext, allValue[i].toString().toLowerCase(), langage)){
+                    //     possibility.push(allValue[i])
+                    // }
                 }
             }
 
@@ -425,6 +351,8 @@ function condition2(doublon, tab, mot, langage) {
     let except = [];
     let letter = [];
 
+    let tabest = [];
+
     for (let x = 0; x < 325; x++){
         let yes = false;
 
@@ -442,9 +370,7 @@ function condition2(doublon, tab, mot, langage) {
                         select = selection(x, enLetterApparition, i);
                     }
 
-                    if(except.find(function(element) { return element === a }) === undefined){
-                        except.push(a);
-                    }
+
 
                     if(mot[a] === select){
                         yes = true;
@@ -452,6 +378,26 @@ function condition2(doublon, tab, mot, langage) {
                         if(letter.find(function(element) { return element ===  select}) === undefined){
                             letter.push(select);
                         }
+
+                        if(except.find(function(element) { return element === a }) === undefined){
+                            except.push(a);
+                        }
+
+                        for(var h = 0; h < tab.length; h++){
+                            if(tabest[h] !== undefined){
+                                if(tabest[h][0] === select){
+                                    tabest[h][1].push(a);
+                                }
+                            }
+                            else{
+                                tabest.push([]);
+                                tabest[tabest.length-1][0] = select;
+                                tabest[tabest.length-1][1] = [];
+                                tabest[tabest.length-1][1].push(a);
+                            }
+
+                        }
+
                     }
                     else{
                         yes = false;
@@ -527,19 +473,35 @@ function condition2(doublon, tab, mot, langage) {
             }
         }
 
-        // for(let z = 0; z < doublon.length; z++){
+        // for(let l = 0; l < tabest.length; l++){
         //     let oui = false;
-        //     for(let u = 0; u < letter.length; u++){
-        //         let regex = new RegExp(letter[u], "g");
-        //
-        //         if((mot.match(regex) || []).length === doublon[z][1]){
-        //             oui = true;
+        //     for(let b = 0; b < tabest[l][1].length; b++){
+        //         if(b+1 < tabest[l][1].length){
+        //             if(mot[tabest[l][1][b]] === mot[tabest[l][1][b+1]]){
+        //                 oui = true;
+        //             }
+        //             else{
+        //                 oui = false;
+        //             }
         //         }
+        //
+        //         if(mot[tabest[l][1][b]] !== tabest[l][0]){
+        //             oui = false;
+        //         }
+        //         good.push(oui);
+        //
         //     }
-        //     good.push(oui);
         // }
 
-        return good.find(function(element) { return element === false; }) === undefined;
+        let yes = true;
+
+        for(var y = 0; y< good.length; y++){
+            if(!good[y]){
+                yes = false;
+            }
+        }
+
+        return yes;
     }
 
     return false;
