@@ -78,7 +78,7 @@ function selection(pos, alphabat, index) {
             return alphabat[index]
         }
 
-        return alphabat[(index)%25]
+        return alphabat[(index)]
 
     }else if(pos < 50){
 
@@ -86,7 +86,7 @@ function selection(pos, alphabat, index) {
             return alphabat[index+1]
         }
 
-        return alphabat[(index+1)%25]
+        return alphabat[(index+1)]
 
     }else if (pos < 73){
 
@@ -94,119 +94,119 @@ function selection(pos, alphabat, index) {
             return alphabat[index+2]
         }
 
-        return alphabat[(index+2)%25]
+        return alphabat[(index+2)]
 
     }else if (pos < 95){
         if(index === 0){
             return alphabat[index+3]
         }
-        return alphabat[(index+3)%25]
+        return alphabat[(index+3)]
     }else if (pos < 116){
         if(index === 0){
             return alphabat[index+4]
         }
-        return alphabat[(index+4)%25]
+        return alphabat[(index+4)]
     }else if (pos < 136){
         if(index === 0){
             return alphabat[index+5]
         }
-        return alphabat[(index+4)%25]
+        return alphabat[(index+4)]
     }else if (pos < 155){
         if(index === 0){
             return alphabat[index+6]
         }
-        return alphabat[(index+6)%25]
+        return alphabat[(index+6)]
     }else if (pos < 173){
         if(index === 0){
             return alphabat[index+7]
         }
-        return alphabat[(index+7)%25]
+        return alphabat[(index+7)]
     }else if (pos < 190){
         if(index === 0){
             return alphabat[index+8]
         }
-        return alphabat[(index+8)%25]
+        return alphabat[(index+8)]
     }else if (pos < 206){
         if(index === 0){
             return alphabat[index+9]
         }
-        return alphabat[(index+9)%25]
+        return alphabat[(index+9)]
     }else if (pos < 221){
         if(index === 0){
             return alphabat[index+10]
         }
-        return alphabat[(index+10)%25]
+        return alphabat[(index+10)]
     }else if (pos < 235){
         if(index === 0){
             return alphabat[index+11]
         }
-        return alphabat[(index+11)%25]
+        return alphabat[(index+11)]
     }else if (pos < 248){
         if(index === 0){
             return alphabat[index+12]
         }
-        return alphabat[(index+12)%25]
+        return alphabat[(index+12)]
     }
     else if(pos < 260){
         if(index === 0){
             return alphabat[index+13]
         }
-        return alphabat[(index+13)%25]
+        return alphabat[(index+13)]
     }else if(pos < 271){
         if(index === 0){
             return alphabat[index+14]
         }
-        return alphabat[(index+14)%25]
+        return alphabat[(index+14)]
     }else if(pos < 281){
         if(index === 0){
             return alphabat[index+15]
         }
-        return alphabat[(index+15)%25]
+        return alphabat[(index+15)]
     }else if(pos < 290){
         if(index === 0){
             return alphabat[index+16]
         }
-        return alphabat[(index+16)%25]
+        return alphabat[(index+16)]
     }else if(pos < 298){
         if(index === 0){
             return alphabat[index+17]
         }
-        return alphabat[(index+17)%25]
+        return alphabat[(index+17)]
     }else if(pos < 305){
         if(index === 0){
             return alphabat[index+18]
         }
-        return alphabat[(index+18)%25]
+        return alphabat[(index+18)]
     }else if(pos < 311){
         if(index === 0){
             return alphabat[index+19]
         }
-        return alphabat[(index+19)%25]
+        return alphabat[(index+19)]
     }else if(pos < 316){
         if(index === 0){
             return alphabat[index+20]
         }
-        return alphabat[(index+20)%25]
+        return alphabat[(index+20)]
     }else if(pos < 320){
         if(index === 0){
             return alphabat[index+21]
         }
-        return alphabat[(index+21)%25]
+        return alphabat[(index+21)]
     }else if(pos < 323){
         if(index === 0){
             return alphabat[index+22]
         }
-        return alphabat[(index+22)%25]
+        return alphabat[(index+22)]
     }else if(pos < 325){
         if(index === 0){
             return alphabat[index+23]
         }
-        return alphabat[(index+23)%25]
+        return alphabat[(index+23)]
     }else if(pos < 326){
         if(index === 0){
             return alphabat[index+24]
         }
-        return alphabat[(index+24)%25]
+        return alphabat[(index+24)]
     }
 
 
@@ -458,12 +458,13 @@ function condition2(doublon, tab, mot, langage) {
                     }
                 }
             }
+            result.push(yes);
 
         }
-        result.push(yes);
     }
 
     if(result.find(function(element) { return element === true; })){
+        return true;
         let good =  [];
 
         for (let y = 0; y < mot.length; y++){
